@@ -1,0 +1,15 @@
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/obj/Debug/net8.0/Cocina.GeneratedMSBuildEditorConfig.editorconfig
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/obj/Debug/net8.0/Cocina.AssemblyInfoInputs.cache
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/obj/Debug/net8.0/Cocina.AssemblyInfo.cs
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/obj/Debug/net8.0/Cocina.csproj.CoreCompileInputs.cache
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/obj/Debug/net8.0/Cocina.sourcelink.json
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/bin/Debug/net8.0/Cocina
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/bin/Debug/net8.0/Cocina.deps.json
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/bin/Debug/net8.0/Cocina.runtimeconfig.json
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/bin/Debug/net8.0/Cocina.dll
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/bin/Debug/net8.0/Cocina.pdb
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/obj/Debug/net8.0/Cocina.dll
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/obj/Debug/net8.0/refint/Cocina.dll
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/obj/Debug/net8.0/Cocina.pdb
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/obj/Debug/net8.0/Cocina.genruntimeconfig.cache
+/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/obj/Debug/net8.0/ref/Cocina.dll

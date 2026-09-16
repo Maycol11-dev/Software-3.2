@@ -1,0 +1,221 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Business/Business.csproj": {}
+  },
+  "projects": {
+    "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Business/Business.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Business/Business.csproj",
+        "projectName": "Business",
+        "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Business/Business.csproj",
+        "packagesPath": "/home/alconz/.nuget/packages/",
+        "outputPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Business/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/alconz/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj": {
+                "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj"
+              },
+              "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj": {
+                "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.12, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.12, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj",
+        "projectName": "Data",
+        "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj",
+        "packagesPath": "/home/alconz/.nuget/packages/",
+        "outputPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/alconz/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {
+              "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj": {
+                "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.1.86, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.12, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[10.0.12, )"
+            },
+            "MySqlConnector": {
+              "target": "Package",
+              "version": "[2.6.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj",
+        "projectName": "Models",
+        "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj",
+        "packagesPath": "/home/alconz/.nuget/packages/",
+        "outputPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/alconz/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net8.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net8.0": {
+            "targetAlias": "net8.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
+        }
+      },
+      "frameworks": {
+        "net8.0": {
+          "targetAlias": "net8.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "DQYXowFKTbQ=",
+  "success": true,
+  "projectFilePath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/API/API.csproj",
+  "expectedPackageFiles": [
+    "/home/alconz/.nuget/packages/dapper/2.1.86/dapper.2.1.86.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.aspnetcore.openapi/8.0.31/microsoft.aspnetcore.openapi.8.0.31.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.extensions.configuration.abstractions/10.0.12/microsoft.extensions.configuration.abstractions.10.0.12.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.12/microsoft.extensions.dependencyinjection.abstractions.10.0.12.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.2/microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.extensions.primitives/10.0.12/microsoft.extensions.primitives.10.0.12.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.openapi/1.6.30/microsoft.openapi.1.6.30.nupkg.sha512",
+    "/home/alconz/.nuget/packages/mysqlconnector/2.6.2/mysqlconnector.2.6.2.nupkg.sha512",
+    "/home/alconz/.nuget/packages/scalar.aspnetcore/2.17.3/scalar.aspnetcore.2.17.3.nupkg.sha512",
+    "/home/alconz/.nuget/packages/swashbuckle.aspnetcore/6.6.2/swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
+    "/home/alconz/.nuget/packages/swashbuckle.aspnetcore.swagger/6.6.2/swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
+    "/home/alconz/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.6.2/swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",
+    "/home/alconz/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.6.2/swashbuckle.aspnetcore.swaggerui.6.6.2.nupkg.sha512"
+  ],
+  "logs": []
+}
