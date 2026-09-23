@@ -1,0 +1,65 @@
+@model PizzeriaMVC.Models.MenuViewModel
+@{
+    ViewData["Title"] = "Menú";
+}
+
+<h2 class="titulo-seccion mb-4">🍕 Nuestro menú</h2>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="row g-4">
+            @foreach (var pizza in Model.Pizzas)
+            {
+                <div class="col-md-6">
+                    <div class="card card-pizza p-3 h-100">
+                        <div class="pizza-tile mb-3">@pizza.Emoji</div>
+                        <h5 class="fw-bold mb-1">@pizza.Nombre</h5>
+                        <p class="text-muted mb-2">@pizza.Descripcion</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <span class="precio">@pizza.Precio.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</span>
+                            <form asp-action="Agregar" method="post" class="d-flex gap-2">
+                                <input type="hidden" name="id" value="@pizza.IdPizza" />
+                                <input type="number" name="cantidad" value="1" min="1" max="10" class="form-control" style="width: 70px;" />
+                                <button type="submit" class="btn btn-pizza">Agregar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="cart-sidebar">
+            <h5 class="fw-bold titulo-seccion mb-3">🧺 Tu pedido</h5>
+
+            @if (Model.Carrito.Vacio)
+            {
+                <p class="cart-empty mb-0">Tu carrito está vacío. ¡Agregá algo rico del menú!</p>
+            }
+            else
+            {
+                @foreach (var item in Model.Carrito.Items)
+                {
+                    <div class="d-flex justify-content-between align-items-center py-2 border-bottom card-carrito-item">
+                        <div>
+                            <div class="fw-semibold">@item.Nombre <span class="qty text-muted">x @item.Cantidad</span></div>
+                            <small class="text-muted">@item.Subtotal.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</small>
+                        </div>
+                        <form asp-action="Quitar" method="post">
+                            <input type="hidden" name="id" value="@item.IdPizza" />
+                            <button class="btn btn-sm btn-outline-danger">✕</button>
+                        </form>
+                    </div>
+                }
+
+                <div class="d-flex justify-content-between fw-bold mt-3">
+                    <span>Total</span>
+                    <span class="precio">@Model.Carrito.Total.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</span>
+                </div>
+
+                <a class="btn btn-pizza-verde w-100 mt-3" asp-action="Confirmar">Confirmar pedido →</a>
+            }
+        </div>
+    </div>
+</div>

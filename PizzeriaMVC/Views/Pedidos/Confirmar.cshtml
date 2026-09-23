@@ -1,0 +1,55 @@
+@model PizzeriaMVC.Models.CarritoViewModel
+@{
+    ViewData["Title"] = "Confirmar pedido";
+}
+
+<h2 class="titulo-seccion mb-4">✅ Confirmar pedido</h2>
+
+@if (Model.Vacio)
+{
+    <div class="alert alert-warning">Tu carrito está vacío. <a asp-action="Menu" class="alert-link">Volvé al menú</a> para elegir pizzas.</div>
+}
+else
+{
+    <form asp-action="Confirmar" method="post">
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <div class="seccion-datos h-100">
+                    <h5 class="fw-bold mb-3">🧾 Resumen del pedido</h5>
+                    @foreach (var item in Model.Items)
+                    {
+                        <div class="d-flex justify-content-between py-2 border-bottom">
+                            <span>@item.Nombre <small class="text-muted">x @item.Cantidad</small></span>
+                            <span class="fw-semibold">@item.Subtotal.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</span>
+                        </div>
+                    }
+                    <div class="d-flex justify-content-between fw-bold mt-3 pt-2">
+                        <span>Total</span>
+                        <span class="precio">@Model.Total.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="seccion-datos">
+                    <h5 class="fw-bold mb-3">👤 Tus datos</h5>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="nombre">Nombre</label>
+                        <input class="form-control" name="nombre" id="nombre" placeholder="Juan Pérez" required />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="telefono">Teléfono</label>
+                        <input class="form-control" name="telefono" id="telefono" placeholder="11 2345-6789" required />
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label" for="direccion">Dirección de entrega</label>
+                        <input class="form-control" name="direccion" id="direccion" placeholder="Av. Siempre Viva 123" required />
+                    </div>
+
+                    <button type="submit" class="btn btn-pizza-verde btn-lg w-100">Confirmar y enviar a cocina</button>
+                </div>
+            </div>
+        </div>
+    </form>
+}

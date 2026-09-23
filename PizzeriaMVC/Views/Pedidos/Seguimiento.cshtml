@@ -1,0 +1,71 @@
+@model PizzeriaMVC.Models.SeguimientoViewModel
+@{
+    ViewData["Title"] = "Seguimiento del pedido";
+}
+
+@if (TempData["MensajeExito"] is string mensaje)
+{
+    <div class="alert alert-success">@mensaje</div>
+}
+
+<div class="text-center mb-4">
+    <div class="hero-pizza" style="font-size:4rem;">🛵</div>
+    <h2 class="titulo-seccion">Pedido #@Model.IdPedido</h2>
+    <p class="text-muted">
+        Total: <strong>@Model.Total.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</strong>
+        · Entrega en <strong>@Model.DireccionEntrega</strong>
+    </p>
+</div>
+
+<div class="seccion-datos py-5 px-3">
+    @{
+        var completos = Model.Pasos.Count(p => p.Completo);
+        var actuales = Model.Pasos.Any(p => p.Activo) ? 1 : 0;
+        var progreso = Math.Clamp((completos + actuales) * 33.33, 0, 100);
+    }
+    <div class="stepper mx-auto" style="max-width: 820px;">
+        <div class="progreso" style="width: @(progreso)%"></div>
+
+        @foreach (var paso in Model.Pasos)
+        {
+            var clase = paso.Completo ? "completo" : paso.Activo ? "activo" : "";
+            <div class="step @clase">
+                <div class="step-circle">
+                    @if (paso.Completo)
+                    {
+                        <span>✔</span>
+                    }
+                    else
+                    {
+                        <span>@paso.Emoji</span>
+                    }
+                </div>
+                <div class="step-label">@paso.Nombre</div>
+            </div>
+        }
+    </div>
+</div>
+
+<div class="row g-4 mt-2">
+    <div class="col-md-6">
+        <div class="seccion-datos">
+            <h5 class="fw-bold titulo-seccion mb-2">👨‍🍳 Estado actual</h5>
+            @{
+                var actual = Model.Pasos.FirstOrDefault(p => p.Activo);
+                var emoji = actual?.Emoji ?? "🍕";
+                var nombre = actual?.Nombre ?? "Desconocido";
+            }
+            <p class="mb-0">
+                <span class="fs-3">@emoji</span> Tu pedido está en: <strong>@nombre</strong>.
+            </p>
+            <small class="text-muted">Actualizado en tiempo real con la información del backend.</small>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="seccion-datos">
+            <h5 class="fw-bold titulo-seccion mb-2">🍕 ¿Qué se preparó?</h5>
+            <p class="mb-0 text-muted">Sin conexión al backend por ahora:
+                esta pantalla muestra el flujo de estados que se completará al conectar con la API.</p>
+        </div>
+    </div>
+</div>
