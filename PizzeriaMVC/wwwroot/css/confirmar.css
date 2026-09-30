@@ -1,0 +1,5 @@
+/* Solo Pedidos/Confirmar.cshtml */
+.resumen-total {
+    font-size: 1.25rem;
+    border-top: 3px solid var(--pizza-rojo) !important;
+}

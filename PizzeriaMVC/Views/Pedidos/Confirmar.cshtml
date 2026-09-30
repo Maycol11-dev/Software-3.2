@@ -3,6 +3,10 @@
     ViewData["Title"] = "Confirmar pedido";
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/confirmar.css" asp-append-version="true" />
+}
+
 <h2 class="titulo-seccion mb-4">✅ Confirmar pedido</h2>
 
 @if (Model.Vacio)
@@ -23,7 +27,7 @@ else
                             <span class="fw-semibold">@item.Subtotal.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</span>
                         </div>
                     }
-                    <div class="d-flex justify-content-between fw-bold mt-3 pt-2">
+                    <div class="d-flex justify-content-between fw-bold resumen-total mt-3 pt-2">
                         <span>Total</span>
                         <span class="precio">@Model.Total.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</span>
                     </div>

@@ -5,12 +5,60 @@
       "PackagePath": "staticwebassets/PizzeriaMVC.bundle.scp.css"
     },
     {
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/css/confirmar.css",
+      "PackagePath": "staticwebassets/css/confirmar.css"
+    },
+    {
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/css/home.css",
+      "PackagePath": "staticwebassets/css/home.css"
+    },
+    {
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/css/menu.css",
+      "PackagePath": "staticwebassets/css/menu.css"
+    },
+    {
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/css/seguimiento.css",
+      "PackagePath": "staticwebassets/css/seguimiento.css"
+    },
+    {
       "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },
     {
-      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/favicon.ico",
-      "PackagePath": "staticwebassets/favicon.ico"
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/images/Inicio.jpg",
+      "PackagePath": "staticwebassets/images/Inicio.jpg"
+    },
+    {
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/images/bravaIcon.jpg",
+      "PackagePath": "staticwebassets/images/bravaIcon.jpg"
+    },
+    {
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/images/pizzas/cuatro-quesos.png",
+      "PackagePath": "staticwebassets/images/pizzas/cuatro-quesos.png"
+    },
+    {
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/images/pizzas/fugazzeta.jpg",
+      "PackagePath": "staticwebassets/images/pizzas/fugazzeta.jpg"
+    },
+    {
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/images/pizzas/muzzarella.jpg",
+      "PackagePath": "staticwebassets/images/pizzas/muzzarella.jpg"
+    },
+    {
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/images/pizzas/napolitana.png",
+      "PackagePath": "staticwebassets/images/pizzas/napolitana.png"
+    },
+    {
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/images/pizzas/prosciutto.jpg",
+      "PackagePath": "staticwebassets/images/pizzas/prosciutto.jpg"
+    },
+    {
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/images/pizzas/rucula-y-jamon.jpg",
+      "PackagePath": "staticwebassets/images/pizzas/rucula-y-jamon.jpg"
+    },
+    {
+      "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/js/carrito.js",
+      "PackagePath": "staticwebassets/js/carrito.js"
     },
     {
       "Id": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/wwwroot/js/site.js",

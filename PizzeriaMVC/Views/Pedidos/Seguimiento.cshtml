@@ -3,6 +3,10 @@
     ViewData["Title"] = "Seguimiento del pedido";
 }
 
+@section Styles {
+    <link rel="stylesheet" href="~/css/seguimiento.css" asp-append-version="true" />
+}
+
 @if (TempData["MensajeExito"] is string mensaje)
 {
     <div class="alert alert-success">@mensaje</div>

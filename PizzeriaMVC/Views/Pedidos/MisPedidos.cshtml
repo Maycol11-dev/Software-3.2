@@ -1,0 +1,83 @@
+@model PizzeriaMVC.Models.MisPedidosViewModel
+@{
+    ViewData["Title"] = "Mis pedidos";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/menu.css" asp-append-version="true" />
+}
+
+@if (TempData["MensajeInfo"] is string info)
+{
+    <div class="alert alert-info">@info</div>
+}
+
+<h2 class="titulo-seccion mb-4">Mis pedidos</h2>
+
+@if (Model.Pedidos.Count == 0)
+{
+    <div class="alert alert-warning">
+        Todavía no hiciste ningún pedido.
+        <a asp-action="Menu" class="alert-link">Ir al menú</a> y elegí tu pizza favorita.
+    </div>
+}
+else
+{
+    <div class="d-flex flex-column gap-4">
+        @for (var i = 0; i < Model.Pedidos.Count; i++)
+        {
+            var pedido = Model.Pedidos[i];
+            var esReciente = i == 0;
+            <div class="seccion-datos">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+                    <div>
+                        <h5 class="fw-bold titulo-seccion mb-1">Pedido #@pedido.Id</h5>
+                        <small class="text-muted">
+                            @pedido.Fecha.ToString("dd/MM/yyyy HH:mm")
+                            @if (!string.IsNullOrWhiteSpace(pedido.DireccionEntrega))
+                            {
+                                <span> · Entrega en @pedido.DireccionEntrega</span>
+                            }
+                        </small>
+                    </div>
+
+                    <div class="d-flex flex-wrap align-items-center gap-2">
+                        <span class="precio me-2">@pedido.Total.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</span>
+                        <a class="btn btn-pizza-verde"
+                           asp-action="Seguimiento"
+                           asp-route-id="@pedido.Id"
+                           asp-route-paso="@(esReciente ? 2 : 4)">Seguir pedido</a>
+                        <form asp-action="Repetir" method="post" class="m-0">
+                            <input type="hidden" name="id" value="@pedido.Id" />
+                            <button type="submit" class="btn btn-pizza">Repetir pedido</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+                        <thead>
+                            <tr class="text-muted">
+                                <th>Pizza</th>
+                                <th class="text-center">Cantidad</th>
+                                <th class="text-end">Precio unitario</th>
+                                <th class="text-end">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in pedido.Items)
+                            {
+                                <tr>
+                                    <td class="fw-semibold">@item.Nombre</td>
+                                    <td class="text-center">@item.Cantidad</td>
+                                    <td class="text-end">@item.Precio.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</td>
+                                    <td class="text-end fw-semibold">@item.Subtotal.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>
+}

@@ -6,7 +6,7 @@ public class PizzaMenuItem
     public string Nombre { get; set; } = string.Empty;
     public string Descripcion { get; set; } = string.Empty;
     public decimal Precio { get; set; }
-    public string Emoji { get; set; } = "🍕";
+    public string ImagenUrl { get; set; } = string.Empty;
 }
 
 public class CarritoItem
@@ -48,4 +48,29 @@ public class SeguimientoViewModel
     public decimal Total { get; set; }
     public string DireccionEntrega { get; set; } = string.Empty;
     public List<EstadoPedidoStep> Pasos { get; set; } = new();
+}
+
+public class PedidoHistorialItem
+{
+    public int IdPizza { get; set; }
+    public string Nombre { get; set; } = string.Empty;
+    public decimal Precio { get; set; }
+    public int Cantidad { get; set; }
+
+    public decimal Subtotal => Precio * Cantidad;
+}
+
+public class PedidoHistorial
+{
+    public int Id { get; set; }
+    public DateTime Fecha { get; set; }
+    public decimal Total { get; set; }
+    public string NombreCliente { get; set; } = string.Empty;
+    public string DireccionEntrega { get; set; } = string.Empty;
+    public List<PedidoHistorialItem> Items { get; set; } = new();
+}
+
+public class MisPedidosViewModel
+{
+    public List<PedidoHistorial> Pedidos { get; set; } = new();
 }

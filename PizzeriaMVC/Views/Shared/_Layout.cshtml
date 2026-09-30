@@ -3,19 +3,21 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Pizzeria Digital</title>
+    <title>@ViewData["Title"] - Pizza Brava</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="~/images/bravaIcon.jpg"/>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/PizzeriaMVC.styles.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-dark navbar-pizzeria">
             <div class="container">
                 <a class="navbar-brand brand-logo" asp-controller="Home" asp-action="Index">
-                    <span>🍕</span> Pizzeria Digital
+                    <span>🍕</span> Pizza Brava
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -30,7 +32,7 @@
                             <a class="nav-link" asp-controller="Pedidos" asp-action="Menu">Menú</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Pedidos" asp-action="Seguimiento" asp-route-id="123">Seguir pedido</a>
+                            <a class="nav-link" asp-controller="Pedidos" asp-action="MisPedidos">Mis pedidos</a>
                         </li>
                     </ul>
                 </div>
@@ -42,10 +44,9 @@
             @RenderBody()
         </main>
     </div>
-
     <footer class="py-3 mt-4">
         <div class="container text-center">
-            🍕 <strong>Pizzeria Digital</strong> — Tu pedido llega caliente y sin excepciones.
+            🍕 <strong>Pizza Brava</strong> — Tu pedido llega caliente y sin excepciones.
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

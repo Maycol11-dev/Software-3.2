@@ -1,0 +1,22 @@
+/* Solo Home/Index.cshtml */
+.hero {
+    background: radial-gradient(circle at 20% 20%, #eaf7ee, transparent 60%),
+                radial-gradient(circle at 90% 20%, #fdece7, transparent 55%),
+                linear-gradient(160deg, var(--pizza-crema) 0%, #ffe9d6 100%);
+    padding: 5rem 0;
+    border-bottom: 3px solid var(--pizza-rojo);
+}
+
+.hero h1 {
+    font-weight: 700;
+    color: var(--pizza-rojo-oscuro);
+    font-size: 3rem;
+}
+
+.hero-img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, .18);
+}

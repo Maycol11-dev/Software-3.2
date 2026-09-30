@@ -1,7 +1,13 @@
+using Microsoft.AspNetCore.Mvc;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    // Valida el token antiforgery en todos los POST, tanto formularios como fetch.
+    options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
+});
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {

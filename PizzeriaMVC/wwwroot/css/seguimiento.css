@@ -1,0 +1,74 @@
+/* Solo Pedidos/Seguimiento.cshtml */
+.stepper {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.stepper .step {
+    flex: 1;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.stepper .step-circle {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: 3px solid #ddd;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: .5rem;
+    transition: all .3s ease;
+}
+
+.stepper .step.activo .step-circle {
+    border-color: var(--pizza-rojo);
+    background-color: var(--pizza-rojo);
+    color: #fff;
+    box-shadow: 0 0 0 6px rgba(192, 57, 43, 0.15);
+}
+
+.stepper .step.completo .step-circle {
+    border-color: var(--pizza-verde);
+    background-color: var(--pizza-verde);
+    color: #fff;
+}
+
+.stepper .step-label {
+    font-size: .85rem;
+    font-weight: 600;
+    color: var(--pizza-gris);
+}
+
+.stepper .step.activo .step-label,
+.stepper .step.completo .step-label {
+    color: var(--pizza-marron);
+}
+
+.stepper::before {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: 10%;
+    right: 10%;
+    height: 4px;
+    background-color: #ddd;
+    z-index: 0;
+    border-radius: 2px;
+}
+
+.stepper .progreso {
+    position: absolute;
+    top: 28px;
+    left: 10%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--pizza-verde), var(--pizza-rojo));
+    z-index: 0;
+    border-radius: 2px;
+    transition: width .5s ease;
+}
