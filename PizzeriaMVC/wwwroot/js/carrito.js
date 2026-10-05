@@ -11,7 +11,7 @@ document.addEventListener('click', async (e) => {
     const id = btn.dataset.id;
     const accion = btn.dataset.delta === '1' ? 'Incrementar' : 'Decrementar';
 
-    const res = await fetch(`/Pedidos/${accion}?id=${id}`, {
+    const res = await fetch(`/Menu/${accion}?id=${id}`, {
         method: 'POST',
         headers: { 'RequestVerificationToken': token() }
     });
@@ -24,6 +24,6 @@ document.addEventListener('click', async (e) => {
         el.textContent = data.cantidades[el.dataset.id] ?? 0;
     });
 
-    const html = await (await fetch('/Pedidos/Carrito')).text();
+    const html = await (await fetch('/Menu/Carrito')).text();
     carrito.innerHTML = html;
 });

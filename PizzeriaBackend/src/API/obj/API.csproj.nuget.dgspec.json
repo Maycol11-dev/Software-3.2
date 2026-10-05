@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/API/API.csproj": {}
+    "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/API.csproj": {}
   },
   "projects": {
-    "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/API/API.csproj": {
+    "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/API/API.csproj",
+        "projectUniqueName": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/API.csproj",
         "projectName": "API",
-        "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/API/API.csproj",
+        "projectPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/API.csproj",
         "packagesPath": "/home/alconz/.nuget/packages/",
-        "outputPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/API/obj/",
+        "outputPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/alconz/.nuget/NuGet/NuGet.Config"
@@ -26,11 +26,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Business/Business.csproj": {
-                "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Business/Business.csproj"
+              "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Business/Business.csproj": {
+                "projectPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Business/Business.csproj"
               },
-              "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj": {
-                "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj"
+              "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Data/Data.csproj": {
+                "projectPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Data/Data.csproj"
               }
             }
           }
@@ -82,18 +82,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Business/Business.csproj": {
+    "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Business/Business.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Business/Business.csproj",
+        "projectUniqueName": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Business/Business.csproj",
         "projectName": "Business",
-        "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Business/Business.csproj",
+        "projectPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Business/Business.csproj",
         "packagesPath": "/home/alconz/.nuget/packages/",
-        "outputPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Business/obj/",
+        "outputPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Business/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/alconz/.nuget/NuGet/NuGet.Config"
@@ -108,11 +108,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj": {
-                "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj"
+              "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Data/Data.csproj": {
+                "projectPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Data/Data.csproj"
               },
-              "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj": {
-                "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj"
+              "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Models/Models.csproj": {
+                "projectPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Models/Models.csproj"
               }
             }
           }
@@ -157,18 +157,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj": {
+    "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Data/Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj",
+        "projectUniqueName": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Data/Data.csproj",
         "projectName": "Data",
-        "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj",
+        "projectPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Data/Data.csproj",
         "packagesPath": "/home/alconz/.nuget/packages/",
-        "outputPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/obj/",
+        "outputPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Data/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/alconz/.nuget/NuGet/NuGet.Config"
@@ -183,8 +183,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj": {
-                "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj"
+              "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Models/Models.csproj": {
+                "projectPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Models/Models.csproj"
               }
             }
           }
@@ -237,18 +237,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
         }
       }
     },
-    "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj": {
+    "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Models/Models.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj",
+        "projectUniqueName": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Models/Models.csproj",
         "projectName": "Models",
-        "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/Models.csproj",
+        "projectPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Models/Models.csproj",
         "packagesPath": "/home/alconz/.nuget/packages/",
-        "outputPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Models/obj/",
+        "outputPath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Models/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/home/alconz/.nuget/NuGet/NuGet.Config"
@@ -295,7 +295,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

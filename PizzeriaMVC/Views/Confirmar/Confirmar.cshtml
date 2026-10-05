@@ -11,7 +11,7 @@
 
 @if (Model.Vacio)
 {
-    <div class="alert alert-warning">Tu carrito está vacío. <a asp-action="Menu" class="alert-link">Volvé al menú</a> para elegir pizzas.</div>
+    <div class="alert alert-warning">Tu carrito está vacío. <a asp-controller="Menu" asp-action="Menu" class="alert-link">Volvé al menú</a> para elegir pizzas.</div>
 }
 else
 {

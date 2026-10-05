@@ -9,59 +9,59 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = PizzeriaMVC
 build_property.RootNamespace = PizzeriaMVC
-build_property.ProjectDir = /home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/
+build_property.ProjectDir = /home/alconz/Documentos/Software-3.2/PizzeriaMVC/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC
+build_property.MSBuildProjectDirectory = /home/alconz/Documentos/Software-3.2/PizzeriaMVC
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/Views/Home/Index.cshtml]
+[/home/alconz/Documentos/Software-3.2/PizzeriaMVC/Views/Confirmar/Confirmar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQ29uZmlybWFyL0NvbmZpcm1hci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/alconz/Documentos/Software-3.2/PizzeriaMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/Views/Home/Privacy.cshtml]
+[/home/alconz/Documentos/Software-3.2/PizzeriaMVC/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/Views/Pedidos/Confirmar.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGVkaWRvcy9Db25maXJtYXIuY3NodG1s
+[/home/alconz/Documentos/Software-3.2/PizzeriaMVC/Views/Menu/Menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9NZW51LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/Views/Pedidos/Menu.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGVkaWRvcy9NZW51LmNzaHRtbA==
+[/home/alconz/Documentos/Software-3.2/PizzeriaMVC/Views/Menu/_Carrito.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWVudS9fQ2Fycml0by5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/Views/Pedidos/MisPedidos.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGVkaWRvcy9NaXNQZWRpZG9zLmNzaHRtbA==
+[/home/alconz/Documentos/Software-3.2/PizzeriaMVC/Views/MisPedidos/MisPedidos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTWlzUGVkaWRvcy9NaXNQZWRpZG9zLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/Views/Pedidos/Seguimiento.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGVkaWRvcy9TZWd1aW1pZW50by5jc2h0bWw=
+[/home/alconz/Documentos/Software-3.2/PizzeriaMVC/Views/Seguimiento/Seguimiento.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2VndWltaWVudG8vU2VndWltaWVudG8uY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/Views/Pedidos/_Carrito.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvUGVkaWRvcy9fQ2Fycml0by5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/Views/Shared/Error.cshtml]
+[/home/alconz/Documentos/Software-3.2/PizzeriaMVC/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
+[/home/alconz/Documentos/Software-3.2/PizzeriaMVC/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/Views/_ViewImports.cshtml]
+[/home/alconz/Documentos/Software-3.2/PizzeriaMVC/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/Views/_ViewStart.cshtml]
+[/home/alconz/Documentos/Software-3.2/PizzeriaMVC/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaMVC/Views/Shared/_Layout.cshtml]
+[/home/alconz/Documentos/Software-3.2/PizzeriaMVC/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-myx3iibes6

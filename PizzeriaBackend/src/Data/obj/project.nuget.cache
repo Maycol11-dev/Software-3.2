@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+W1KzsPjC5g=",
+  "dgSpecHash": "kYzDO3hHz6s=",
   "success": true,
-  "projectFilePath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/PizzeriaBackend/src/Data/Data.csproj",
+  "projectFilePath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Data/Data.csproj",
   "expectedPackageFiles": [
     "/home/alconz/.nuget/packages/dapper/2.1.86/dapper.2.1.86.nupkg.sha512",
     "/home/alconz/.nuget/packages/microsoft.extensions.configuration.abstractions/10.0.12/microsoft.extensions.configuration.abstractions.10.0.12.nupkg.sha512",

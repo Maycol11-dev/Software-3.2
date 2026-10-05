@@ -18,7 +18,7 @@
 {
     <div class="alert alert-warning">
         Todavía no hiciste ningún pedido.
-        <a asp-action="Menu" class="alert-link">Ir al menú</a> y elegí tu pizza favorita.
+        <a asp-controller="Menu" asp-action="Menu" class="alert-link">Ir al menú</a> y elegí tu pizza favorita.
     </div>
 }
 else
@@ -44,6 +44,7 @@ else
                     <div class="d-flex flex-wrap align-items-center gap-2">
                         <span class="precio me-2">@pedido.Total.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</span>
                         <a class="btn btn-pizza-verde"
+                           asp-controller="Seguimiento"
                            asp-action="Seguimiento"
                            asp-route-id="@pedido.Id"
                            asp-route-paso="@(esReciente ? 2 : 4)">Seguir pedido</a>

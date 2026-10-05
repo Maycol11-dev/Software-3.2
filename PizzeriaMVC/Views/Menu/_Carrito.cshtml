@@ -27,5 +27,5 @@ else
         <span class="precio">@Model.Total.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</span>
     </div>
 
-    <a class="btn btn-pizza-verde w-100 mt-3" asp-action="Confirmar">Confirmar pedido →</a>
+    <a class="btn btn-pizza-verde w-100 mt-3" asp-controller="Confirmar" asp-action="Confirmar">Confirmar pedido →</a>
 }

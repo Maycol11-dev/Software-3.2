@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/Cocina.csproj",
+      "projectUniqueName": "/home/alconz/Documentos/Software-3.2/Cocina/Cocina.csproj",
       "projectName": "Cocina",
-      "projectPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/Cocina.csproj",
+      "projectPath": "/home/alconz/Documentos/Software-3.2/Cocina/Cocina.csproj",
       "packagesPath": "/home/alconz/.nuget/packages/",
-      "outputPath": "/home/alconz/Documentos/Trabajos/Software3.2/Software-3.2/Cocina/obj/",
+      "outputPath": "/home/alconz/Documentos/Software-3.2/Cocina/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/alconz/.nuget/NuGet/NuGet.Config"
@@ -64,7 +64,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.425/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.419/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
