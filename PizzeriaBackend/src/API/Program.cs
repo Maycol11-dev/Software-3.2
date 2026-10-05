@@ -12,6 +12,11 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+    options.AddPolicy("AllowFrontend", policy =>
+        policy.WithOrigins("http://localhost:5184", "https://localhost:7184")
+              .AllowAnyMethod()
+              .AllowAnyHeader()));
 builder.Services.AddData(builder.Configuration);
 builder.Services.AddBusiness(builder.Configuration);
 
@@ -27,6 +32,8 @@ if (app.Environment.IsDevelopment())
         options.WithTitle("Pizzeria API");
     });
 }
+
+app.UseCors("AllowFrontend");
 
 app.UseExceptionHandler(errorApp =>
 {

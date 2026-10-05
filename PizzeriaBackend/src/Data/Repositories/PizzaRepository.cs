@@ -6,7 +6,7 @@ namespace Data.Repositories;
 public class PizzaRepository : IPizzaRepository
 {
     private const string SelectPizza =
-        "SELECT id AS IdPizza, nombre AS Nombre, descripcion AS Descripcion, precio AS Precio FROM Pizza";
+        "SELECT id AS IdPizza, nombre AS Nombre, descripcion AS Descripcion, precio AS Precio, imagen_url AS ImagenUrl FROM Pizza";
 
     private readonly IDbConnectionFactory _factory;
 
@@ -30,8 +30,8 @@ public class PizzaRepository : IPizzaRepository
     public async Task<int> InsertAsync(Pizza pizza)
     {
         const string sql = @"
-            INSERT INTO Pizza (nombre, descripcion, precio)
-            VALUES (@Nombre, @Descripcion, @Precio);
+            INSERT INTO Pizza (nombre, descripcion, precio, imagen_url)
+            VALUES (@Nombre, @Descripcion, @Precio, @ImagenUrl);
             SELECT CAST(LAST_INSERT_ID() AS UNSIGNED);";
 
         using var conn = _factory.CreateConnection();
@@ -42,7 +42,7 @@ public class PizzaRepository : IPizzaRepository
     {
         const string sql = @"
             UPDATE Pizza
-            SET nombre = @Nombre, descripcion = @Descripcion, precio = @Precio
+            SET nombre = @Nombre, descripcion = @Descripcion, precio = @Precio, imagen_url = @ImagenUrl
             WHERE id = @IdPizza";
 
         using var conn = _factory.CreateConnection();

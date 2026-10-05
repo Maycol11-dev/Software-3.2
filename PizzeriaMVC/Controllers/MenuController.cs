@@ -1,21 +1,38 @@
 using Microsoft.AspNetCore.Mvc;
-using PizzeriaMVC.Data;
 using PizzeriaMVC.Models;
+using PizzeriaMVC.Services;
 
 namespace PizzeriaMVC.Controllers;
 
 public class MenuController : Controller
 {
+    private readonly ApiPizzeria _api;
+
+    public MenuController(ApiPizzeria api)
+    {
+        _api = api;
+    }
+
     [HttpGet]
-    public IActionResult Menu()
+    public async Task<IActionResult> Menu()
     {
         var carrito = ObtenerCarrito();
 
         GuardarCarrito(carrito);
 
+        List<PizzaMenuItem> pizzas;
+        try
+        {
+            pizzas = await _api.GetPizzasAsync();
+        }
+        catch (HttpRequestException)
+        {
+            pizzas = new List<PizzaMenuItem>();
+        }
+
         var modelo = new MenuViewModel
         {
-            Pizzas = MenuMock.Pizzas,
+            Pizzas = pizzas,
             Carrito = carrito
         };
 
@@ -34,17 +51,13 @@ public class MenuController : Controller
         }
         else
         {
-            var pizza = MenuMock.Pizzas.FirstOrDefault(p => p.IdPizza == id);
-            if (pizza is not null)
+            carrito.Items.Add(new CarritoItem
             {
-                carrito.Items.Add(new CarritoItem
-                {
-                    IdPizza = pizza.IdPizza,
-                    Nombre = pizza.Nombre,
-                    Precio = pizza.Precio,
-                    Cantidad = Math.Max(1, cantidad)
-                });
-            }
+                IdPizza = id,
+                Nombre = "",
+                Precio = 0,
+                Cantidad = Math.Max(1, cantidad)
+            });
         }
 
         GuardarCarrito(carrito);
@@ -63,17 +76,13 @@ public class MenuController : Controller
         }
         else
         {
-            var pizza = MenuMock.Pizzas.FirstOrDefault(p => p.IdPizza == id);
-            if (pizza is not null)
+            carrito.Items.Add(new CarritoItem
             {
-                carrito.Items.Add(new CarritoItem
-                {
-                    IdPizza = pizza.IdPizza,
-                    Nombre = pizza.Nombre,
-                    Precio = pizza.Precio,
-                    Cantidad = 1
-                });
-            }
+                IdPizza = id,
+                Nombre = "",
+                Precio = 0,
+                Cantidad = 1
+            });
         }
 
         GuardarCarrito(carrito);

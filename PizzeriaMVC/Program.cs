@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using PizzeriaMVC.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews(options =>
 {
-    // Valida el token antiforgery en todos los POST, tanto formularios como fetch.
     options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute());
 });
 builder.Services.AddDistributedMemoryCache();
@@ -14,6 +13,7 @@ builder.Services.AddSession(options =>
     options.Cookie.Name = ".PizzeriaMVC.Session";
     options.IdleTimeout = TimeSpan.FromMinutes(20);
 });
+builder.Services.AddHttpClient<ApiPizzeria>();
 
 var app = builder.Build();
 

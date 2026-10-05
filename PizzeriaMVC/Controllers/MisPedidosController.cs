@@ -1,27 +1,60 @@
 using Microsoft.AspNetCore.Mvc;
 using PizzeriaMVC.Models;
+using PizzeriaMVC.Services;
 
 namespace PizzeriaMVC.Controllers;
 
 public class MisPedidosController : Controller
 {
-    [HttpGet]
-    public IActionResult MisPedidos()
+    private readonly ApiPizzeria _api;
+
+    public MisPedidosController(ApiPizzeria api)
     {
-        return View(new MisPedidosViewModel { Pedidos = ObtenerHistorial() });
+        _api = api;
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> MisPedidos()
+    {
+        List<PedidoDetalleDto> pedidosApi;
+        try
+        {
+            pedidosApi = await _api.GetPedidosAsync();
+        }
+        catch (HttpRequestException)
+        {
+            pedidosApi = new List<PedidoDetalleDto>();
+        }
+
+        var pedidos = pedidosApi.Select(p => new PedidoHistorial
+        {
+            Id = p.IdPedido,
+            Fecha = p.FechaCreacion,
+            Total = p.Total,
+            NombreCliente = p.NombreCliente,
+            DireccionEntrega = p.DireccionEntrega,
+            Items = p.Pizzas.Select(i => new PedidoHistorialItem
+            {
+                IdPizza = i.IdPizza,
+                Nombre = "",
+                Precio = 0,
+                Cantidad = i.Cantidad
+            }).ToList()
+        }).ToList();
+
+        return View(new MisPedidosViewModel { Pedidos = pedidos });
     }
 
     [HttpPost]
-    public IActionResult Repetir(int id)
+    public async Task<IActionResult> Repetir(int id)
     {
-        var historial = ObtenerHistorial();
-        var pedido = historial.FirstOrDefault(p => p.Id == id);
+        var pedido = await _api.GetPedidoAsync(id);
 
         if (pedido is not null)
         {
             var carrito = ObtenerCarrito();
 
-            foreach (var item in pedido.Items)
+            foreach (var item in pedido.Pizzas)
             {
                 var existente = carrito.Items.FirstOrDefault(i => i.IdPizza == item.IdPizza);
                 if (existente is not null)
@@ -33,15 +66,15 @@ public class MisPedidosController : Controller
                     carrito.Items.Add(new CarritoItem
                     {
                         IdPizza = item.IdPizza,
-                        Nombre = item.Nombre,
-                        Precio = item.Precio,
+                        Nombre = "",
+                        Precio = 0,
                         Cantidad = item.Cantidad
                     });
                 }
             }
 
             GuardarCarrito(carrito);
-            TempData["MensajeInfo"] = $"Pedido #{pedido.Id} agregado al carrito.";
+            TempData["MensajeInfo"] = $"Pedido #{pedido.IdPedido} agregado al carrito.";
         }
 
         return RedirectToAction(nameof(MenuController.Menu), "Menu");
@@ -52,7 +85,4 @@ public class MisPedidosController : Controller
 
     private void GuardarCarrito(CarritoViewModel carrito)
         => HttpContext.Session.Set(SessionKeys.Carrito, carrito);
-
-    private List<PedidoHistorial> ObtenerHistorial()
-        => HttpContext.Session.Get<List<PedidoHistorial>>(SessionKeys.HistorialPedidos) ?? new List<PedidoHistorial>();
 }

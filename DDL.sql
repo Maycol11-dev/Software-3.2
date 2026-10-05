@@ -39,6 +39,8 @@ CREATE TABLE Pedido (
     CONSTRAINT fk_pedido_cliente FOREIGN KEY (cliente_id) REFERENCES Cliente (id)
 );
 
+ALTER TABLE Pizza ADD COLUMN imagen_url VARCHAR(255) NULL;
+
 CREATE TABLE PedidoPizza (
     pedido_id INT NOT NULL,
     pizza_id INT NOT NULL,

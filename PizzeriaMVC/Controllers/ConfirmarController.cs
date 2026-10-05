@@ -1,10 +1,18 @@
 using Microsoft.AspNetCore.Mvc;
 using PizzeriaMVC.Models;
+using PizzeriaMVC.Services;
 
 namespace PizzeriaMVC.Controllers;
 
 public class ConfirmarController : Controller
 {
+    private readonly ApiPizzeria _api;
+
+    public ConfirmarController(ApiPizzeria api)
+    {
+        _api = api;
+    }
+
     [HttpGet]
     public IActionResult Confirmar()
     {
@@ -12,37 +20,40 @@ public class ConfirmarController : Controller
     }
 
     [HttpPost]
-    public IActionResult Confirmar(string nombre, string telefono, string direccion)
+    public async Task<IActionResult> Confirmar(string nombre, string telefono, string direccion)
     {
         var carrito = ObtenerCarrito();
 
         if (!carrito.Vacio)
         {
-            var historial = ObtenerHistorial();
-            var nuevoPedido = new PedidoHistorial
+            try
             {
-                Id = historial.Count == 0 ? 1 : historial.Max(h => h.Id) + 1,
-                Fecha = DateTime.Now,
-                Total = carrito.Total,
-                NombreCliente = nombre,
-                DireccionEntrega = direccion,
-                Items = carrito.Items
-                    .Select(i => new PedidoHistorialItem
+                var clienteId = await _api.CrearClienteAsync(new ClienteDto
+                {
+                    Nombre = nombre,
+                    Telefono = telefono,
+                    Direccion = direccion
+                });
+
+                var pedidoId = await _api.CrearPedidoAsync(new CrearPedidoDto
+                {
+                    ClienteId = clienteId,
+                    Pizzas = carrito.Items.Select(i => new PedidoPizzaDto
                     {
                         IdPizza = i.IdPizza,
-                        Nombre = i.Nombre,
-                        Precio = i.Precio,
                         Cantidad = i.Cantidad
-                    })
-                    .ToList()
-            };
+                    }).ToList()
+                });
 
-            historial.Insert(0, nuevoPedido);
-            GuardarHistorial(historial);
-
-            GuardarCarrito(new CarritoViewModel());
-            TempData["MensajeExito"] = $"Pedido recibido. ¡Gracias {nombre}! Lo enviamos a {direccion}.";
-            return RedirectToAction(nameof(SeguimientoController.Seguimiento), "Seguimiento", new { id = nuevoPedido.Id, paso = 1 });
+                GuardarCarrito(new CarritoViewModel());
+                TempData["MensajeExito"] = $"Pedido recibido. ¡Gracias {nombre}! Lo enviamos a {direccion}.";
+                return RedirectToAction(nameof(SeguimientoController.Seguimiento), "Seguimiento", new { id = pedidoId, paso = 1 });
+            }
+            catch (HttpRequestException)
+            {
+                TempData["MensajeError"] = "No se pudo procesar el pedido. El servidor no está disponible.";
+                return RedirectToAction(nameof(MenuController.Menu), "Menu");
+            }
         }
 
         GuardarCarrito(new CarritoViewModel());
@@ -54,10 +65,4 @@ public class ConfirmarController : Controller
 
     private void GuardarCarrito(CarritoViewModel carrito)
         => HttpContext.Session.Set(SessionKeys.Carrito, carrito);
-
-    private List<PedidoHistorial> ObtenerHistorial()
-        => HttpContext.Session.Get<List<PedidoHistorial>>(SessionKeys.HistorialPedidos) ?? new List<PedidoHistorial>();
-
-    private void GuardarHistorial(List<PedidoHistorial> historial)
-        => HttpContext.Session.Set(SessionKeys.HistorialPedidos, historial);
 }
