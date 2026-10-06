@@ -91,8 +91,8 @@ public class PedidoRepository : IPedidoRepository
         foreach (var pizza in pedido.Pizzas)
         {
             await conn.ExecuteAsync(
-                "INSERT INTO PedidoPizza (pedido_id, pizza_id, cantidad, precio_unitario) VALUES (@IdPedido, @IdPizza, @Cantidad, @PrecioUnitario)",
-                new { IdPedido = id, pizza.IdPizza, pizza.Cantidad, pizza.PrecioUnitario },
+                "INSERT INTO PedidoPizza (pedido_id, pizza_id, cantidad, precio_unitario, subtotal) VALUES (@IdPedido, @IdPizza, @Cantidad, @PrecioUnitario, @Subtotal)",
+                new { IdPedido = id, pizza.IdPizza, pizza.Cantidad, pizza.PrecioUnitario, pizza.Subtotal },
                 transaction);
         }
 
