@@ -7,22 +7,24 @@ namespace PizzeriaMVC.Controllers;
 public class ConfirmarController : Controller
 {
     private readonly ApiPizzeria _api;
+    private readonly CarritoService _carrito;
 
-    public ConfirmarController(ApiPizzeria api)
+    public ConfirmarController(ApiPizzeria api, CarritoService carrito)
     {
         _api = api;
+        _carrito = carrito;
     }
 
     [HttpGet]
-    public IActionResult Confirmar()
+    public async Task<IActionResult> Confirmar()
     {
-        return View(ObtenerCarrito());
+        return View(await _carrito.ObtenerHidratado(HttpContext.Session));
     }
 
     [HttpPost]
     public async Task<IActionResult> Confirmar(string nombre, string telefono, string direccion)
     {
-        var carrito = ObtenerCarrito();
+        var carrito = await _carrito.ObtenerHidratado(HttpContext.Session);
 
         if (!carrito.Vacio)
         {
@@ -45,7 +47,7 @@ public class ConfirmarController : Controller
                     }).ToList()
                 });
 
-                GuardarCarrito(new CarritoViewModel());
+                _carrito.Guardar(HttpContext.Session, new CarritoViewModel());
                 TempData["MensajeExito"] = $"Pedido recibido. ¡Gracias {nombre}! Lo enviamos a {direccion}.";
                 return RedirectToAction(nameof(SeguimientoController.Seguimiento), "Seguimiento", new { id = pedidoId, paso = 1 });
             }
@@ -56,13 +58,7 @@ public class ConfirmarController : Controller
             }
         }
 
-        GuardarCarrito(new CarritoViewModel());
+        _carrito.Guardar(HttpContext.Session, new CarritoViewModel());
         return RedirectToAction(nameof(MenuController.Menu), "Menu");
     }
-
-    private CarritoViewModel ObtenerCarrito()
-        => HttpContext.Session.Get<CarritoViewModel>(SessionKeys.Carrito) ?? new CarritoViewModel();
-
-    private void GuardarCarrito(CarritoViewModel carrito)
-        => HttpContext.Session.Set(SessionKeys.Carrito, carrito);
 }

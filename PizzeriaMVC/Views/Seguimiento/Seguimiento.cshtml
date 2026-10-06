@@ -68,8 +68,22 @@
     <div class="col-md-6">
         <div class="seccion-datos">
             <h5 class="fw-bold titulo-seccion mb-2">🍕 ¿Qué se preparó?</h5>
-            <p class="mb-0 text-muted">Sin conexión al backend por ahora:
-                esta pantalla muestra el flujo de estados que se completará al conectar con la API.</p>
+            @if (Model.Items.Count > 0)
+            {
+                <ul class="list-unstyled mb-0">
+                    @foreach (var item in Model.Items)
+                    {
+                        <li class="d-flex justify-content-between align-items-center py-1">
+                            <span>@item.Nombre <small class="text-muted">x @item.Cantidad</small></span>
+                            <span class="fw-semibold">@item.Subtotal.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</span>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p class="mb-0 text-muted">No pudimos obtener el detalle del pedido.</p>
+            }
         </div>
     </div>
 </div>

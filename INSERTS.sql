@@ -1,3 +1,4 @@
+
 USE PizzeriaDB;
 
 INSERT INTO Pizza (nombre, descripcion, precio, imagen_url) VALUES

@@ -7,10 +7,12 @@ namespace PizzeriaMVC.Controllers;
 public class MisPedidosController : Controller
 {
     private readonly ApiPizzeria _api;
+    private readonly CarritoService _carrito;
 
-    public MisPedidosController(ApiPizzeria api)
+    public MisPedidosController(ApiPizzeria api, CarritoService carrito)
     {
         _api = api;
+        _carrito = carrito;
     }
 
     [HttpGet]
@@ -36,8 +38,8 @@ public class MisPedidosController : Controller
             Items = p.Pizzas.Select(i => new PedidoHistorialItem
             {
                 IdPizza = i.IdPizza,
-                Nombre = "",
-                Precio = 0,
+                Nombre = i.NombrePizza,
+                Precio = i.PrecioUnitario,
                 Cantidad = i.Cantidad
             }).ToList()
         }).ToList();
@@ -52,37 +54,14 @@ public class MisPedidosController : Controller
 
         if (pedido is not null)
         {
-            var carrito = ObtenerCarrito();
-
             foreach (var item in pedido.Pizzas)
             {
-                var existente = carrito.Items.FirstOrDefault(i => i.IdPizza == item.IdPizza);
-                if (existente is not null)
-                {
-                    existente.Cantidad += item.Cantidad;
-                }
-                else
-                {
-                    carrito.Items.Add(new CarritoItem
-                    {
-                        IdPizza = item.IdPizza,
-                        Nombre = "",
-                        Precio = 0,
-                        Cantidad = item.Cantidad
-                    });
-                }
+                _carrito.Agregar(HttpContext.Session, item.IdPizza, item.Cantidad);
             }
 
-            GuardarCarrito(carrito);
             TempData["MensajeInfo"] = $"Pedido #{pedido.IdPedido} agregado al carrito.";
         }
 
         return RedirectToAction(nameof(MenuController.Menu), "Menu");
     }
-
-    private CarritoViewModel ObtenerCarrito()
-        => HttpContext.Session.Get<CarritoViewModel>(SessionKeys.Carrito) ?? new CarritoViewModel();
-
-    private void GuardarCarrito(CarritoViewModel carrito)
-        => HttpContext.Session.Set(SessionKeys.Carrito, carrito);
 }

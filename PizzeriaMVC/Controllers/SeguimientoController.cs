@@ -60,7 +60,14 @@ public class SeguimientoController : Controller
                     Completo = i + 1 < pasoActual,
                     Activo = i + 1 == pasoActual
                 })
-                .ToList()
+                .ToList(),
+            Items = pedido?.Pizzas.Select(i => new PedidoHistorialItem
+            {
+                IdPizza = i.IdPizza,
+                Nombre = i.NombrePizza,
+                Precio = i.PrecioUnitario,
+                Cantidad = i.Cantidad
+            }).ToList() ?? new List<PedidoHistorialItem>()
         };
 
         return View(modelo);

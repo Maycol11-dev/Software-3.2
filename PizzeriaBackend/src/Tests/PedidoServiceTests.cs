@@ -115,6 +115,54 @@ public class PedidoServiceTests
     }
 
     [Fact]
+    public async Task CreateAsync_GuardaSnapshotDelPrecio()
+    {
+        var cliente = new Cliente { IdCliente = 1, Nombre = "Juan", Direccion = "Calle 1" };
+        _clienteRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(cliente);
+        _pizzaRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(new Pizza { IdPizza = 1, Nombre = "Muzzarella", Precio = 9000 });
+        _pizzaRepoMock.Setup(r => r.GetByIdAsync(2)).ReturnsAsync(new Pizza { IdPizza = 2, Nombre = "Fugazzeta", Precio = 8800 });
+        _pedidoRepoMock.Setup(r => r.InsertAsync(It.IsAny<Pedido>())).ReturnsAsync(7);
+
+        var pizzas = new List<PedidoPizza>
+        {
+            new() { IdPizza = 1, Cantidad = 2 },
+            new() { IdPizza = 2, Cantidad = 1 }
+        };
+
+        await _service.CreateAsync(1, pizzas);
+
+        _pedidoRepoMock.Verify(r => r.InsertAsync(It.Is<Pedido>(p =>
+            p.Total == 26800 &&
+            p.Pizzas[0].PrecioUnitario == 9000 &&
+            p.Pizzas[0].NombrePizza == "Muzzarella" &&
+            p.Pizzas[0].Subtotal == 18000 &&
+            p.Pizzas[1].PrecioUnitario == 8800 &&
+            p.Pizzas[1].Subtotal == 8800
+        )), Times.Once);
+    }
+
+    [Fact]
+    public async Task CreateAsync_UsaPrecioActualDelCatalogo()
+    {
+        var cliente = new Cliente { IdCliente = 1, Nombre = "Juan", Direccion = "Calle 1" };
+        _clienteRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(cliente);
+        _pizzaRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(new Pizza { IdPizza = 1, Nombre = "Muzzarella", Precio = 9500 });
+        _pedidoRepoMock.Setup(r => r.InsertAsync(It.IsAny<Pedido>())).ReturnsAsync(1);
+
+        var pizzas = new List<PedidoPizza>
+        {
+            new() { IdPizza = 1, Cantidad = 3, PrecioUnitario = 1 }
+        };
+
+        await _service.CreateAsync(1, pizzas);
+
+        _pedidoRepoMock.Verify(r => r.InsertAsync(It.Is<Pedido>(p =>
+            p.Pizzas[0].PrecioUnitario == 9500 &&
+            p.Total == 28500
+        )), Times.Once);
+    }
+
+    [Fact]
     public async Task ChangeEstadoAsync_EsperaAEnPreparacion_Exito()
     {
         var pedido = new Pedido { IdPedido = 1, Estado = PedidoEstado.EsperaDeConfirmacion };

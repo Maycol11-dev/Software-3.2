@@ -41,6 +41,8 @@ public class PedidoService : IPedidoService
             throw new InvalidOperationException("El pedido debe incluir al menos una pizza.");
         }
 
+        var total = 0m;
+
         foreach (var item in items)
         {
             if (item.Cantidad <= 0)
@@ -50,9 +52,19 @@ public class PedidoService : IPedidoService
 
             var pizza = await _pizzas.GetByIdAsync(item.IdPizza)
                 ?? throw new InvalidOperationException($"La pizza {item.IdPizza} no existe.");
+
+            item.PrecioUnitario = pizza.Precio;
+            item.NombrePizza = pizza.Nombre;
+            total += item.Subtotal;
         }
 
-        var pedido = new Pedido { IdCliente = cliente.IdCliente, Pizzas = items };
+        var pedido = new Pedido
+        {
+            IdCliente = cliente.IdCliente,
+            Pizzas = items,
+            Total = total
+        };
+
         return await _pedidos.InsertAsync(pedido);
     }
 

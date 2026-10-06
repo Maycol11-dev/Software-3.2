@@ -7,28 +7,20 @@ namespace PizzeriaMVC.Controllers;
 public class MenuController : Controller
 {
     private readonly ApiPizzeria _api;
+    private readonly CarritoService _carrito;
 
-    public MenuController(ApiPizzeria api)
+    public MenuController(ApiPizzeria api, CarritoService carrito)
     {
         _api = api;
+        _carrito = carrito;
     }
 
     [HttpGet]
     public async Task<IActionResult> Menu()
     {
-        var carrito = ObtenerCarrito();
+        var carrito = await _carrito.ObtenerHidratado(HttpContext.Session);
 
-        GuardarCarrito(carrito);
-
-        List<PizzaMenuItem> pizzas;
-        try
-        {
-            pizzas = await _api.GetPizzasAsync();
-        }
-        catch (HttpRequestException)
-        {
-            pizzas = new List<PizzaMenuItem>();
-        }
+        var pizzas = await _api.GetPizzasAsync();
 
         var modelo = new MenuViewModel
         {
@@ -42,99 +34,45 @@ public class MenuController : Controller
     [HttpPost]
     public IActionResult Agregar(int id, int cantidad = 1)
     {
-        var carrito = ObtenerCarrito();
-
-        var existente = carrito.Items.FirstOrDefault(i => i.IdPizza == id);
-        if (existente is not null)
-        {
-            existente.Cantidad += Math.Max(1, cantidad);
-        }
-        else
-        {
-            carrito.Items.Add(new CarritoItem
-            {
-                IdPizza = id,
-                Nombre = "",
-                Precio = 0,
-                Cantidad = Math.Max(1, cantidad)
-            });
-        }
-
-        GuardarCarrito(carrito);
+        _carrito.Agregar(HttpContext.Session, id, Math.Max(1, cantidad));
         return RedirectToAction(nameof(Menu));
     }
 
     [HttpPost]
-    public IActionResult Incrementar(int id)
+    public async Task<IActionResult> Incrementar(int id)
     {
-        var carrito = ObtenerCarrito();
-        var existente = carrito.Items.FirstOrDefault(i => i.IdPizza == id);
-
-        if (existente is not null)
-        {
-            existente.Cantidad++;
-        }
-        else
-        {
-            carrito.Items.Add(new CarritoItem
-            {
-                IdPizza = id,
-                Nombre = "",
-                Precio = 0,
-                Cantidad = 1
-            });
-        }
-
-        GuardarCarrito(carrito);
-        return Json(RespuestaCarrito(carrito));
+        _carrito.Sumar(HttpContext.Session, id, 1);
+        return Json(await RespuestaCarrito());
     }
 
     [HttpPost]
-    public IActionResult Decrementar(int id)
+    public async Task<IActionResult> Decrementar(int id)
     {
-        var carrito = ObtenerCarrito();
-        var existente = carrito.Items.FirstOrDefault(i => i.IdPizza == id);
-
-        if (existente is not null)
-        {
-            existente.Cantidad--;
-            if (existente.Cantidad <= 0)
-            {
-                carrito.Items.Remove(existente);
-            }
-        }
-
-        GuardarCarrito(carrito);
-        return Json(RespuestaCarrito(carrito));
+        _carrito.Sumar(HttpContext.Session, id, -1);
+        return Json(await RespuestaCarrito());
     }
 
     [HttpGet]
-    public IActionResult Carrito()
+    public async Task<IActionResult> Carrito()
     {
-        return PartialView("_Carrito", ObtenerCarrito());
+        return PartialView("_Carrito", await _carrito.ObtenerHidratado(HttpContext.Session));
     }
 
     [HttpPost]
     public IActionResult Quitar(int id)
     {
-        var carrito = ObtenerCarrito();
-        carrito.Items.RemoveAll(i => i.IdPizza == id);
-        GuardarCarrito(carrito);
+        _carrito.Quitar(HttpContext.Session, id);
         return RedirectToAction(nameof(Menu));
     }
 
-    private CarritoViewModel ObtenerCarrito()
-        => HttpContext.Session.Get<CarritoViewModel>(SessionKeys.Carrito) ?? new CarritoViewModel();
-
-    private object RespuestaCarrito(CarritoViewModel carrito)
+    private async Task<object> RespuestaCarrito()
     {
+        var carrito = await _carrito.ObtenerHidratado(HttpContext.Session);
+
         return new
         {
             cantidades = carrito.Items.ToDictionary(i => i.IdPizza, i => i.Cantidad),
             total = carrito.Total
         };
     }
-
-    private void GuardarCarrito(CarritoViewModel carrito)
-        => HttpContext.Session.Set(SessionKeys.Carrito, carrito);
 }

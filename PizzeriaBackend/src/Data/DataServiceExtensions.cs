@@ -15,8 +15,6 @@ public static class DataServiceExtensions
         services.AddScoped<IClienteRepository, ClienteRepository>();
         services.AddScoped<IPizzaRepository, PizzaRepository>();
         services.AddScoped<IPedidoRepository, PedidoRepository>();
-        services.AddScoped<ICocinaRepository, CocinaRepository>();
-        services.AddScoped<IPizzeriaRepository, PizzeriaRepository>();
 
         return services;
     }

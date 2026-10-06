@@ -16,8 +16,6 @@ public static class BusinessServiceExtensions
         services.AddScoped<IClienteService, ClienteService>();
         services.AddScoped<IPizzaService, PizzaService>();
         services.AddScoped<IPedidoService, PedidoService>();
-        services.AddScoped<ICocinaService, CocinaService>();
-        services.AddScoped<IPizzeriaService, PizzeriaService>();
 
         return services;
     }
