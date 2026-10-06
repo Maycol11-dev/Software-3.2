@@ -32,6 +32,7 @@ CREATE TABLE PedidoPizza (
     pizza_id INT NOT NULL,
     cantidad INT NOT NULL DEFAULT 1,
     precio_unitario DECIMAL(8, 2) NOT NULL DEFAULT 0,
+    subtotal DECIMAL(8, 2) NOT NULL DEFAULT 0,
     PRIMARY KEY (pedido_id, pizza_id),
     CONSTRAINT fk_pizza_pedido FOREIGN KEY (pedido_id) REFERENCES Pedido (id) ON DELETE CASCADE,
     CONSTRAINT fk_pizza_producto FOREIGN KEY (pizza_id) REFERENCES Pizza (id)
