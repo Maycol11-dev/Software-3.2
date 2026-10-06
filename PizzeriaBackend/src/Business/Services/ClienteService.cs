@@ -19,12 +19,14 @@ public class ClienteService : IClienteService
     public async Task<int> CreateAsync(Cliente cliente)
     {
         Validar(cliente);
+        cliente.Telefono = Regex.Replace(cliente.Telefono, @"[^\d]", "");
         return await _repositorio.InsertAsync(cliente);
     }
 
     public async Task UpdateAsync(Cliente cliente)
     {
         Validar(cliente);
+        cliente.Telefono = Regex.Replace(cliente.Telefono, @"[^\d]", "");
         await _repositorio.UpdateAsync(cliente);
     }
 
