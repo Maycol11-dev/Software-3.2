@@ -80,11 +80,6 @@
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/API.sourcelink.json
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/staticwebassets.build.json
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/staticwebassets.development.json
-/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/staticwebassets/msbuild.API.Microsoft.AspNetCore.StaticWebAssets.props
-/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/staticwebassets/msbuild.build.API.props
-/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.API.props
-/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.API.props
-/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/staticwebassets.pack.json
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/scopedcss/bundle/API.styles.css
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/API.csproj.Up2Date
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/API.dll
@@ -92,3 +87,11 @@
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/API.pdb
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/API.genruntimeconfig.cache
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/ref/API.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/bin/Debug/net8.0/API.staticwebassets.endpoints.json
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/rpswa.dswa.cache.json
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/rjimswa.dswa.cache.json
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/rjsmrazor.dswa.cache.json
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/rjsmcshtml.dswa.cache.json
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/staticwebassets.build.json.cache
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/staticwebassets.build.endpoints.json
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/swae.build.ex.cache

@@ -31,3 +31,23 @@ public class PedidoDetalleDto
     public string DireccionEntrega { get; set; } = string.Empty;
     public List<PedidoPizzaDto> Pizzas { get; set; } = new();
 }
+
+public class RegistroDto
+{
+    public string Correo { get; set; } = string.Empty;
+    public string Contrasena { get; set; } = string.Empty;
+    public string Nombre { get; set; } = string.Empty;
+    public string Telefono { get; set; } = string.Empty;
+    public string Direccion { get; set; } = string.Empty;
+}
+
+public class SesionDto
+{
+    public int UsuarioId { get; set; }
+    public int ClienteId { get; set; }
+    public string Correo { get; set; } = string.Empty;
+    public string Nombre { get; set; } = string.Empty;
+    public string Telefono { get; set; } = string.Empty;
+    public string Direccion { get; set; } = string.Empty;
+    public int RolId { get; set; }
+}

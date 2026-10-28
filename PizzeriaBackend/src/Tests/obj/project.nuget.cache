@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "0z1mGH12g7c=",
+  "dgSpecHash": "GQIi2gcfR4o=",
   "success": true,
   "projectFilePath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/Tests.csproj",
   "expectedPackageFiles": [
@@ -101,7 +101,9 @@
     "/home/alconz/.nuget/packages/xunit.core/2.5.3/xunit.core.2.5.3.nupkg.sha512",
     "/home/alconz/.nuget/packages/xunit.extensibility.core/2.5.3/xunit.extensibility.core.2.5.3.nupkg.sha512",
     "/home/alconz/.nuget/packages/xunit.extensibility.execution/2.5.3/xunit.extensibility.execution.2.5.3.nupkg.sha512",
-    "/home/alconz/.nuget/packages/xunit.runner.visualstudio/2.5.3/xunit.runner.visualstudio.2.5.3.nupkg.sha512"
+    "/home/alconz/.nuget/packages/xunit.runner.visualstudio/2.5.3/xunit.runner.visualstudio.2.5.3.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.netcore.app.ref/8.0.33/microsoft.netcore.app.ref.8.0.33.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.33/microsoft.aspnetcore.app.ref.8.0.33.nupkg.sha512"
   ],
   "logs": []
 }

@@ -2,11 +2,27 @@
 CREATE DATABASE IF NOT EXISTS PizzeriaDB;
 USE PizzeriaDB;
 
+CREATE TABLE Rol (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL UNIQUE
+);
+
+CREATE TABLE Usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    correo VARCHAR(150) NOT NULL UNIQUE,
+    contrasena VARCHAR(255) NOT NULL,
+    rol_id INT NOT NULL,
+    fecha_registro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_usuario_rol FOREIGN KEY (rol_id) REFERENCES Rol (id)
+);
+
 CREATE TABLE Cliente (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL UNIQUE,
     nombre VARCHAR(100) NOT NULL,
     telefono VARCHAR(20) NULL,
-    direccion VARCHAR(150) NOT NULL
+    direccion VARCHAR(150) NOT NULL,
+    CONSTRAINT fk_cliente_usuario FOREIGN KEY (usuario_id) REFERENCES Usuario (id)
 );
 
 CREATE TABLE Pizza (

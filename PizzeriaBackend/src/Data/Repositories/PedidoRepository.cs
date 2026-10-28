@@ -34,7 +34,21 @@ public class PedidoRepository : IPedidoRepository
     public async Task<IEnumerable<Pedido>> GetAllAsync()
     {
         using var conn = _factory.CreateConnection();
-        var rows = (await conn.QueryAsync(SelectPedido + " ORDER BY p.fecha_creacion DESC")).ToList();
+        var rows = await conn.QueryAsync(SelectPedido + " ORDER BY p.fecha_creacion DESC");
+        return await ArmarPedidos(conn, rows);
+    }
+
+    public async Task<IEnumerable<Pedido>> GetByClienteAsync(int clienteId)
+    {
+        using var conn = _factory.CreateConnection();
+        var rows = await conn.QueryAsync(
+            SelectPedido + " WHERE p.cliente_id = @ClienteId ORDER BY p.fecha_creacion DESC",
+            new { ClienteId = clienteId });
+        return await ArmarPedidos(conn, rows);
+    }
+
+    private static async Task<IEnumerable<Pedido>> ArmarPedidos(IDbConnection conn, IEnumerable<dynamic> rows)
+    {
         var pedidos = rows.Select(ToPedido).ToList();
 
         if (pedidos.Count == 0)

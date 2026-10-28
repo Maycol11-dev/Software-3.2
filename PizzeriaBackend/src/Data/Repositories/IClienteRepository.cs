@@ -4,6 +4,7 @@ namespace Data.Repositories;
 
 public interface IClienteRepository : IRepository<Cliente>
 {
+    Task<Cliente?> GetByUsuarioIdAsync(int usuarioId);
     Task<int> InsertAsync(Cliente cliente);
     Task UpdateAsync(Cliente cliente);
     Task DeleteAsync(int id);

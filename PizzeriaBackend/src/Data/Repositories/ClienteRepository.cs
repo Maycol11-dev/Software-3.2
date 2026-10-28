@@ -6,7 +6,7 @@ namespace Data.Repositories;
 public class ClienteRepository : IClienteRepository
 {
     private const string SelectCliente =
-        "SELECT id AS IdCliente, nombre AS Nombre, telefono AS Telefono, direccion AS Direccion FROM Cliente";
+        "SELECT id AS IdCliente, usuario_id AS UsuarioId, nombre AS Nombre, telefono AS Telefono, direccion AS Direccion FROM Cliente";
 
     private readonly IDbConnectionFactory _factory;
 
@@ -27,11 +27,17 @@ public class ClienteRepository : IClienteRepository
         return await conn.QuerySingleOrDefaultAsync<Cliente>(SelectCliente + " WHERE id = @Id", new { Id = id });
     }
 
+    public async Task<Cliente?> GetByUsuarioIdAsync(int usuarioId)
+    {
+        using var conn = _factory.CreateConnection();
+        return await conn.QuerySingleOrDefaultAsync<Cliente>(SelectCliente + " WHERE usuario_id = @UsuarioId", new { UsuarioId = usuarioId });
+    }
+
     public async Task<int> InsertAsync(Cliente cliente)
     {
         const string sql = @"
-            INSERT INTO Cliente (nombre, telefono, direccion)
-            VALUES (@Nombre, @Telefono, @Direccion);
+            INSERT INTO Cliente (usuario_id, nombre, telefono, direccion)
+            VALUES (@UsuarioId, @Nombre, @Telefono, @Direccion);
             SELECT CAST(LAST_INSERT_ID() AS UNSIGNED);";
 
         using var conn = _factory.CreateConnection();

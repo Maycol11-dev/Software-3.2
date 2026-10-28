@@ -1,3 +1,5 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace PizzeriaMVC.Models;
 
 public class PizzaMenuItem
@@ -74,4 +76,47 @@ public class PedidoHistorial
 public class MisPedidosViewModel
 {
     public List<PedidoHistorial> Pedidos { get; set; } = new();
+    public string NombreCliente { get; set; } = string.Empty;
+}
+
+public class LoginViewModel
+{
+    [Required(ErrorMessage = "Ingresá tu correo.")]
+    [EmailAddress(ErrorMessage = "El correo no es válido.")]
+    public string Correo { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Ingresá tu contraseña.")]
+    [DataType(DataType.Password)]
+    public string Contrasena { get; set; } = string.Empty;
+
+    public string? ReturnUrl { get; set; }
+}
+
+public class RegistroViewModel
+{
+    [Required(ErrorMessage = "Ingresá tu correo.")]
+    [EmailAddress(ErrorMessage = "El correo no es válido.")]
+    public string Correo { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Ingresá una contraseña.")]
+    [MinLength(6, ErrorMessage = "La contraseña debe tener al menos 6 caracteres.")]
+    [DataType(DataType.Password)]
+    public string Contrasena { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Ingresá tu nombre.")]
+    public string Nombre { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Ingresá tu teléfono.")]
+    public string Telefono { get; set; } = string.Empty;
+
+    [Required(ErrorMessage = "Ingresá tu dirección de entrega.")]
+    public string Direccion { get; set; } = string.Empty;
+}
+
+public class ConfirmarViewModel
+{
+    public CarritoViewModel Carrito { get; set; } = new();
+    public string Nombre { get; set; } = string.Empty;
+    public string Telefono { get; set; } = string.Empty;
+    public string Direccion { get; set; } = string.Empty;
 }

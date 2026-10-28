@@ -28,6 +28,8 @@ public class PedidoService : IPedidoService
 
     public async Task<IEnumerable<Pedido>> GetAllAsync() => await _pedidos.GetAllAsync();
 
+    public async Task<IEnumerable<Pedido>> GetByClienteAsync(int clienteId) => await _pedidos.GetByClienteAsync(clienteId);
+
     public async Task<Pedido?> GetByIdAsync(int id) => await _pedidos.GetByIdAsync(id);
 
     public async Task<int> CreateAsync(int clienteId, IEnumerable<PedidoPizza> pizzas)

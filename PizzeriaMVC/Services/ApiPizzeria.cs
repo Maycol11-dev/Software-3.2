@@ -1,3 +1,4 @@
+using System.Net;
 using System.Text;
 using System.Text.Json;
 using Microsoft.Extensions.Caching.Memory;
@@ -90,5 +91,55 @@ public class ApiPizzeria
         var response = await _client.GetAsync("/api/pedidos");
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<List<PedidoDetalleDto>>(JsonOptions) ?? new();
+    }
+
+    public async Task<List<PedidoDetalleDto>> GetPedidosDeClienteAsync(int clienteId)
+    {
+        var response = await _client.GetAsync($"/api/pedidos/cliente/{clienteId}");
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<List<PedidoDetalleDto>>(JsonOptions) ?? new();
+    }
+
+    public async Task RegistrarAsync(RegistroDto registro)
+    {
+        var response = await _client.PostAsJsonAsync("/api/auth/registro", registro);
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new ApiException(await LeerMensajeError(response));
+        }
+    }
+
+    public async Task<SesionDto?> LoginAsync(string correo, string contrasena)
+    {
+        var response = await _client.PostAsJsonAsync("/api/auth/login", new { correo, contrasena });
+
+        if (response.StatusCode == HttpStatusCode.Unauthorized)
+        {
+            return null;
+        }
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new ApiException(await LeerMensajeError(response));
+        }
+
+        return await response.Content.ReadFromJsonAsync<SesionDto>(JsonOptions);
+    }
+
+    private static async Task<string> LeerMensajeError(HttpResponseMessage response)
+    {
+        try
+        {
+            var problema = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>(JsonOptions);
+            if (problema is not null && problema.TryGetValue("mensaje", out var mensaje))
+            {
+                return mensaje;
+            }
+        }
+        catch (JsonException)
+        {
+        }
+
+        return "No se pudo completar la operación. Intentá de nuevo.";
     }
 }

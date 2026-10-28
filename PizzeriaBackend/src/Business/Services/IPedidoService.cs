@@ -5,6 +5,7 @@ namespace Business.Services;
 public interface IPedidoService
 {
     Task<IEnumerable<Pedido>> GetAllAsync();
+    Task<IEnumerable<Pedido>> GetByClienteAsync(int clienteId);
     Task<Pedido?> GetByIdAsync(int id);
     Task<int> CreateAsync(int clienteId, IEnumerable<PedidoPizza> pizzas);
     Task ChangeEstadoAsync(int id, PedidoEstado nuevoEstado);

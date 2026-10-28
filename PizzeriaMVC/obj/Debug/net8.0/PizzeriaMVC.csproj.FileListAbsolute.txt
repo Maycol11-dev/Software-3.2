@@ -47,11 +47,6 @@
 /home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/PizzeriaMVC.sourcelink.json
 /home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/staticwebassets.build.json
 /home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/staticwebassets.development.json
-/home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/staticwebassets/msbuild.PizzeriaMVC.Microsoft.AspNetCore.StaticWebAssets.props
-/home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/staticwebassets/msbuild.build.PizzeriaMVC.props
-/home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.PizzeriaMVC.props
-/home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.PizzeriaMVC.props
-/home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/staticwebassets.pack.json
 /home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/scopedcss/Views/Shared/_Layout.cshtml.rz.scp.css
 /home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/scopedcss/bundle/PizzeriaMVC.styles.css
 /home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/scopedcss/projectbundle/PizzeriaMVC.bundle.scp.css
@@ -60,3 +55,11 @@
 /home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/PizzeriaMVC.pdb
 /home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/PizzeriaMVC.genruntimeconfig.cache
 /home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/ref/PizzeriaMVC.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaMVC/bin/Debug/net8.0/PizzeriaMVC.staticwebassets.endpoints.json
+/home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/rpswa.dswa.cache.json
+/home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/rjimswa.dswa.cache.json
+/home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/rjsmrazor.dswa.cache.json
+/home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/rjsmcshtml.dswa.cache.json
+/home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/staticwebassets.build.json.cache
+/home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/staticwebassets.build.endpoints.json
+/home/alconz/Documentos/Software-3.2/PizzeriaMVC/obj/Debug/net8.0/swae.build.ex.cache

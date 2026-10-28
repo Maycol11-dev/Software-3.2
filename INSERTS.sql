@@ -1,6 +1,10 @@
 
 USE PizzeriaDB;
 
+INSERT INTO Rol (nombre) VALUES
+('Cliente'),
+('Administrador');
+
 INSERT INTO Pizza (nombre, descripcion, precio, imagen_url) VALUES
 ('Muzzarella', 'La clásica: muzzarella fundida y salsa de tomate.', 9000, '/images/pizzas/muzzarella.jpg'),
 ('Napolitana', 'Tomate en rebanadas, ajo y queso gratinado.', 11000, '/images/pizzas/napolitana.png'),

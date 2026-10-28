@@ -61,5 +61,6 @@ app.MapGet("/", () => "Pizzeria API funcionando");
 app.MapClienteEndpoints();
 app.MapPizzaEndpoints();
 app.MapPedidoEndpoints();
+app.MapAuthEndpoints();
 
 app.Run();

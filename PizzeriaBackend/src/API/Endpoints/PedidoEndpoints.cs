@@ -17,6 +17,9 @@ public static class PedidoEndpoints
             return pedido is null ? Results.NotFound() : Results.Ok(pedido);
         });
 
+        group.MapGet("/cliente/{clienteId:int}", async (int clienteId, IPedidoService service) =>
+            Results.Ok(await service.GetByClienteAsync(clienteId)));
+
         group.MapPost("/", async (CrearPedidoRequest request, IPedidoService service) =>
         {
             var pizzas = request.Pizzas

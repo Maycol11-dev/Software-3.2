@@ -1,4 +1,4 @@
-@model PizzeriaMVC.Models.CarritoViewModel
+@model PizzeriaMVC.Models.ConfirmarViewModel
 @{
     ViewData["Title"] = "Confirmar pedido";
 }
@@ -9,18 +9,18 @@
 
 <h2 class="titulo-seccion mb-4">✅ Confirmar pedido</h2>
 
-@if (Model.Vacio)
+@if (Model.Carrito.Vacio)
 {
     <div class="alert alert-warning">Tu carrito está vacío. <a asp-controller="Menu" asp-action="Menu" class="alert-link">Volvé al menú</a> para elegir pizzas.</div>
 }
 else
 {
-    <form asp-action="Confirmar" method="post">
+    <form asp-action="ConfirmarEnvio" method="post">
         <div class="row g-4">
             <div class="col-lg-6">
                 <div class="seccion-datos h-100">
                     <h5 class="fw-bold mb-3">🧾 Resumen del pedido</h5>
-                    @foreach (var item in Model.Items)
+                    @foreach (var item in Model.Carrito.Items)
                     {
                         <div class="d-flex justify-content-between py-2 border-bottom">
                             <span>@item.Nombre <small class="text-muted">x @item.Cantidad</small></span>
@@ -29,27 +29,25 @@ else
                     }
                     <div class="d-flex justify-content-between fw-bold resumen-total mt-3 pt-2">
                         <span>Total</span>
-                        <span class="precio">@Model.Total.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</span>
+                        <span class="precio">@Model.Carrito.Total.ToString("C0", new System.Globalization.CultureInfo("es-AR"))</span>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-6">
                 <div class="seccion-datos">
-                    <h5 class="fw-bold mb-3">👤 Tus datos</h5>
+                    <h5 class="fw-bold mb-3">👤 Datos de entrega</h5>
 
-                    <div class="mb-3">
-                        <label class="form-label" for="nombre">Nombre</label>
-                        <input class="form-control" name="nombre" id="nombre" placeholder="Juan Pérez" required />
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label" for="telefono">Teléfono</label>
-                        <input class="form-control" name="telefono" id="telefono" placeholder="11 2345-6789" required />
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label" for="direccion">Dirección de entrega</label>
-                        <input class="form-control" name="direccion" id="direccion" placeholder="Av. Siempre Viva 123" required />
-                    </div>
+                    <dl class="row mb-4">
+                        <dt class="col-sm-4">Nombre</dt>
+                        <dd class="col-sm-8">@Model.Nombre</dd>
+
+                        <dt class="col-sm-4">Teléfono</dt>
+                        <dd class="col-sm-8">@Model.Telefono</dd>
+
+                        <dt class="col-sm-4">Dirección</dt>
+                        <dd class="col-sm-8">@Model.Direccion</dd>
+                    </dl>
 
                     <button type="submit" class="btn btn-pizza-verde btn-lg w-100">Confirmar y enviar a cocina</button>
                 </div>

@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="../build/PizzeriaMVC.props" />
-</Project>

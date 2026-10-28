@@ -73,6 +73,7 @@ footer {
     border-radius: 50rem;
     padding: .6rem 1.6rem;
     font-weight: 600;
+    letter-spacing: .01em;
 }
 
 .btn-pizza {
@@ -132,7 +133,7 @@ footer {
     background-color: #fff;
     border-radius: 1rem;
     box-shadow: 0 4px 14px rgba(45, 32, 23, 0.12);
-    padding: 1.5rem;
+    padding: 2rem;
 }
 
 /* ===== Pizza flotante (Index y Seguimiento) ===== */

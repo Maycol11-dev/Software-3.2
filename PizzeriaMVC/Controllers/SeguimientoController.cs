@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PizzeriaMVC.Models;
 using PizzeriaMVC.Services;
 
 namespace PizzeriaMVC.Controllers;
 
+[Authorize]
 public class SeguimientoController : Controller
 {
     private readonly ApiPizzeria _api;

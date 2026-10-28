@@ -1,9 +1,12 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PizzeriaMVC.Models;
 using PizzeriaMVC.Services;
 
 namespace PizzeriaMVC.Controllers;
 
+[Authorize]
 public class ConfirmarController : Controller
 {
     private readonly ApiPizzeria _api;
@@ -18,25 +21,28 @@ public class ConfirmarController : Controller
     [HttpGet]
     public async Task<IActionResult> Confirmar()
     {
-        return View(await _carrito.ObtenerHidratado(HttpContext.Session));
+        var modelo = new ConfirmarViewModel
+        {
+            Carrito = await _carrito.ObtenerHidratado(HttpContext.Session),
+            Nombre = User.Identity?.Name ?? string.Empty,
+            Telefono = User.FindFirst("Telefono")?.Value ?? string.Empty,
+            Direccion = User.FindFirst("Direccion")?.Value ?? string.Empty
+        };
+
+        return View(modelo);
     }
 
     [HttpPost]
-    public async Task<IActionResult> Confirmar(string nombre, string telefono, string direccion)
+    public async Task<IActionResult> ConfirmarEnvio()
     {
         var carrito = await _carrito.ObtenerHidratado(HttpContext.Session);
 
         if (!carrito.Vacio)
         {
+            var clienteId = int.Parse(User.FindFirst("ClienteId")?.Value ?? "0");
+
             try
             {
-                var clienteId = await _api.CrearClienteAsync(new ClienteDto
-                {
-                    Nombre = nombre,
-                    Telefono = telefono,
-                    Direccion = direccion
-                });
-
                 var pedidoId = await _api.CrearPedidoAsync(new CrearPedidoDto
                 {
                     ClienteId = clienteId,
@@ -48,7 +54,7 @@ public class ConfirmarController : Controller
                 });
 
                 _carrito.Guardar(HttpContext.Session, new CarritoViewModel());
-                TempData["MensajeExito"] = $"Pedido recibido. ¡Gracias {nombre}! Lo enviamos a {direccion}.";
+                TempData["MensajeExito"] = $"Pedido recibido. ¡Gracias {User.Identity?.Name}!";
                 return RedirectToAction(nameof(SeguimientoController.Seguimiento), "Seguimiento", new { id = pedidoId, paso = 1 });
             }
             catch (HttpRequestException)

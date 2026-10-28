@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PizzeriaMVC.Models;
 using PizzeriaMVC.Services;
 
 namespace PizzeriaMVC.Controllers;
 
+[Authorize]
 public class MisPedidosController : Controller
 {
     private readonly ApiPizzeria _api;
@@ -19,9 +21,10 @@ public class MisPedidosController : Controller
     public async Task<IActionResult> MisPedidos()
     {
         List<PedidoDetalleDto> pedidosApi;
+        var clienteId = int.Parse(User.FindFirst("ClienteId")?.Value ?? "0");
         try
         {
-            pedidosApi = await _api.GetPedidosAsync();
+            pedidosApi = await _api.GetPedidosDeClienteAsync(clienteId);
         }
         catch (HttpRequestException)
         {
@@ -44,7 +47,11 @@ public class MisPedidosController : Controller
             }).ToList()
         }).ToList();
 
-        return View(new MisPedidosViewModel { Pedidos = pedidos });
+        return View(new MisPedidosViewModel
+        {
+            Pedidos = pedidos,
+            NombreCliente = User.Identity?.Name ?? string.Empty
+        });
     }
 
     [HttpPost]
