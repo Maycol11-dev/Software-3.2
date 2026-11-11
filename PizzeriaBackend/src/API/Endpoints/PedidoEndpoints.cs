@@ -1,5 +1,6 @@
 using Business.Services;
 using Models;
+using System.Security.Claims;
 
 namespace API.Endpoints;
 
@@ -9,7 +10,8 @@ public static class PedidoEndpoints
     {
         var group = app.MapGroup("/api/pedidos").WithTags("Pedidos");
 
-        group.MapGet("/", async (IPedidoService service) => Results.Ok(await service.GetAllAsync()));
+        group.MapGet("/", async (IPedidoService service) => Results.Ok(await service.GetAllAsync()))
+            .RequireAuthorization();
 
         group.MapGet("/{id:int}", async (int id, IPedidoService service) =>
         {
@@ -18,9 +20,9 @@ public static class PedidoEndpoints
         });
 
         group.MapGet("/cliente/{clienteId:int}", async (int clienteId, IPedidoService service) =>
-            Results.Ok(await service.GetByClienteAsync(clienteId)));
+            Results.Ok(await service.GetByClienteAsync(clienteId))).RequireAuthorization();
 
-        group.MapPost("/", async (CrearPedidoRequest request, IPedidoService service) =>
+        group.MapPost("/", async (CrearPedidoRequest request, IPedidoService service, ClaimsPrincipal usuario) =>
         {
             var pizzas = request.Pizzas
                 .Select(p => new PedidoPizza { IdPizza = p.IdPizza, Cantidad = p.Cantidad })
@@ -28,19 +30,19 @@ public static class PedidoEndpoints
 
             var id = await service.CreateAsync(request.ClienteId, pizzas);
             return Results.Created($"/api/pedidos/{id}", new { id });
-        });
+        }).RequireAuthorization();
 
         group.MapPatch("/{id:int}/estado", async (int id, CambiarEstadoRequest request, IPedidoService service) =>
         {
             await service.ChangeEstadoAsync(id, request.Estado);
             return Results.NoContent();
-        });
+        }).RequireAuthorization();
 
         group.MapDelete("/{id:int}", async (int id, IPedidoService service) =>
         {
             await service.DeleteAsync(id);
             return Results.NoContent();
-        });
+        }).RequireAuthorization();
 
         return app;
     }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "GQIi2gcfR4o=",
+  "dgSpecHash": "bQnWZM5yN14=",
   "success": true,
   "projectFilePath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/Tests.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,10 @@
     "/home/alconz/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/10.0.12/microsoft.extensions.dependencyinjection.abstractions.10.0.12.nupkg.sha512",
     "/home/alconz/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.2/microsoft.extensions.logging.abstractions.8.0.2.nupkg.sha512",
     "/home/alconz/.nuget/packages/microsoft.extensions.primitives/10.0.12/microsoft.extensions.primitives.10.0.12.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.identitymodel.abstractions/7.1.2/microsoft.identitymodel.abstractions.7.1.2.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.identitymodel.jsonwebtokens/7.1.2/microsoft.identitymodel.jsonwebtokens.7.1.2.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.identitymodel.logging/7.1.2/microsoft.identitymodel.logging.7.1.2.nupkg.sha512",
+    "/home/alconz/.nuget/packages/microsoft.identitymodel.tokens/7.1.2/microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
     "/home/alconz/.nuget/packages/microsoft.net.test.sdk/17.8.0/microsoft.net.test.sdk.17.8.0.nupkg.sha512",
     "/home/alconz/.nuget/packages/microsoft.netcore.platforms/1.1.0/microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "/home/alconz/.nuget/packages/microsoft.netcore.targets/1.1.0/microsoft.netcore.targets.1.1.0.nupkg.sha512",
@@ -52,6 +56,7 @@
     "/home/alconz/.nuget/packages/system.globalization/4.3.0/system.globalization.4.3.0.nupkg.sha512",
     "/home/alconz/.nuget/packages/system.globalization.calendars/4.3.0/system.globalization.calendars.4.3.0.nupkg.sha512",
     "/home/alconz/.nuget/packages/system.globalization.extensions/4.3.0/system.globalization.extensions.4.3.0.nupkg.sha512",
+    "/home/alconz/.nuget/packages/system.identitymodel.tokens.jwt/7.1.2/system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512",
     "/home/alconz/.nuget/packages/system.io/4.3.0/system.io.4.3.0.nupkg.sha512",
     "/home/alconz/.nuget/packages/system.io.compression/4.3.0/system.io.compression.4.3.0.nupkg.sha512",
     "/home/alconz/.nuget/packages/system.io.compression.zipfile/4.3.0/system.io.compression.zipfile.4.3.0.nupkg.sha512",
@@ -101,9 +106,7 @@
     "/home/alconz/.nuget/packages/xunit.core/2.5.3/xunit.core.2.5.3.nupkg.sha512",
     "/home/alconz/.nuget/packages/xunit.extensibility.core/2.5.3/xunit.extensibility.core.2.5.3.nupkg.sha512",
     "/home/alconz/.nuget/packages/xunit.extensibility.execution/2.5.3/xunit.extensibility.execution.2.5.3.nupkg.sha512",
-    "/home/alconz/.nuget/packages/xunit.runner.visualstudio/2.5.3/xunit.runner.visualstudio.2.5.3.nupkg.sha512",
-    "/home/alconz/.nuget/packages/microsoft.netcore.app.ref/8.0.33/microsoft.netcore.app.ref.8.0.33.nupkg.sha512",
-    "/home/alconz/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.33/microsoft.aspnetcore.app.ref.8.0.33.nupkg.sha512"
+    "/home/alconz/.nuget/packages/xunit.runner.visualstudio/2.5.3/xunit.runner.visualstudio.2.5.3.nupkg.sha512"
   ],
   "logs": []
 }

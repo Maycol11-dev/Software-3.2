@@ -15,6 +15,7 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromMinutes(20);
 });
 builder.Services.AddHttpClient<ApiPizzeria>();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddMemoryCache();
 builder.Services.AddScoped<CarritoService>();
 

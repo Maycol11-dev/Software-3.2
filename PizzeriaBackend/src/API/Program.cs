@@ -1,7 +1,10 @@
+using System.Text;
 using System.Text.Json.Serialization;
 using API.Endpoints;
 using Business;
 using Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +15,21 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+        };
+    });
+builder.Services.AddAuthorization();
 builder.Services.AddCors(options =>
     options.AddPolicy("AllowFrontend", policy =>
         policy.WithOrigins("http://localhost:5184", "https://localhost:7184")
@@ -35,24 +53,34 @@ if (app.Environment.IsDevelopment())
 
 app.UseCors("AllowFrontend");
 
+app.UseAuthentication();
+app.UseAuthorization();
+
+var logger = app.Logger;
+
 app.UseExceptionHandler(errorApp =>
 {
     errorApp.Run(async context =>
     {
         var exception = context.Features.Get<Microsoft.AspNetCore.Diagnostics.IExceptionHandlerFeature>()?.Error;
 
-        var (statusCode, titulo) = exception switch
+        var (statusCode, titulo, mensaje) = exception switch
         {
-            InvalidOperationException => (StatusCodes.Status400BadRequest, "Error de validación"),
-            _ => (StatusCodes.Status500InternalServerError, "Error interno del servidor")
+            InvalidOperationException validacion => (StatusCodes.Status400BadRequest, "Error de validación", validacion.Message),
+            _ => (StatusCodes.Status500InternalServerError, "Error interno del servidor", "Ocurrió un error inesperado. Intentá más tarde.")
         };
+
+        if (statusCode == StatusCodes.Status500InternalServerError)
+        {
+            logger.LogError(exception, "Error no manejado en la API");
+        }
 
         context.Response.StatusCode = statusCode;
         context.Response.ContentType = "application/problem+json";
         await context.Response.WriteAsJsonAsync(new
         {
             titulo,
-            mensaje = exception?.Message ?? "Ocurrió un error inesperado."
+            mensaje
         });
     });
 });

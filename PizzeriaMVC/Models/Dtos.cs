@@ -43,6 +43,7 @@ public class RegistroDto
 
 public class SesionDto
 {
+    public string Token { get; set; } = string.Empty;
     public int UsuarioId { get; set; }
     public int ClienteId { get; set; }
     public string Correo { get; set; } = string.Empty;

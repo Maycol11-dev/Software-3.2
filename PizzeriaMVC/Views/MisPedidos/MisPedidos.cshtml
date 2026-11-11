@@ -7,11 +7,6 @@
     <link rel="stylesheet" href="~/css/menu.css" asp-append-version="true" />
 }
 
-@if (TempData["MensajeInfo"] is string info)
-{
-    <div class="alert alert-info">@info</div>
-}
-
 <h2 class="titulo-seccion mb-4">Mis pedidos</h2>
 
 @if (Model.Pedidos.Count == 0)

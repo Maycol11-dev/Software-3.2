@@ -232,3 +232,8 @@
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/obj/Debug/net8.0/Tests.pdb
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/obj/Debug/net8.0/Tests.genruntimeconfig.cache
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/obj/Debug/net8.0/ref/Tests.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll

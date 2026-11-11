@@ -14,6 +14,7 @@ public static class BusinessServiceExtensions
         services.AddSingleton<ICocinaGateway>(new CocinaSocketClient(host, puerto));
 
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
+        services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IClienteService, ClienteService>();
         services.AddScoped<IPizzaService, PizzaService>();
         services.AddScoped<IPedidoService, PedidoService>();

@@ -15,10 +15,26 @@ public static class AuthEndpoints
             return Results.Created($"/api/usuarios/{id}", new { id });
         });
 
-        group.MapPost("/login", async (LoginRequest request, IUsuarioService service) =>
+        group.MapPost("/login", async (LoginRequest request, IUsuarioService service, ITokenService tokenService) =>
         {
             var sesion = await service.AutenticarAsync(request.Correo, request.Contrasena);
-            return sesion is null ? Results.Unauthorized() : Results.Ok(sesion);
+            if (sesion is null)
+            {
+                return Results.Unauthorized();
+            }
+
+            var token = tokenService.GenerarToken(sesion);
+            return Results.Ok(new
+            {
+                token,
+                usuarioId = sesion.UsuarioId,
+                clienteId = sesion.ClienteId,
+                correo = sesion.Correo,
+                nombre = sesion.Nombre,
+                telefono = sesion.Telefono,
+                direccion = sesion.Direccion,
+                rolId = sesion.RolId
+            });
         });
 
         return app;

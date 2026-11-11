@@ -95,3 +95,11 @@
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/staticwebassets.build.json.cache
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/staticwebassets.build.endpoints.json
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/obj/Debug/net8.0/swae.build.ex.cache
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/bin/Debug/net8.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/bin/Debug/net8.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/bin/Debug/net8.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/API/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll

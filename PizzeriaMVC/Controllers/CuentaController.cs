@@ -105,6 +105,7 @@ public class CuentaController : Controller
     [HttpPost]
     public async Task<IActionResult> Logout()
     {
+        _api.CerrarSesion();
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         return RedirectToAction(nameof(HomeController.Index), "Home");
     }
