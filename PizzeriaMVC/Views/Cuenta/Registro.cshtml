@@ -24,6 +24,12 @@
                 </div>
 
                 <div class="mb-3">
+                    <label class="form-label" asp-for="ConfirmarContrasena">Confirmar contraseña</label>
+                    <input class="form-control text-center" asp-for="ConfirmarContrasena" type="password" placeholder="Repetí tu contraseña" />
+                    <span class="text-danger" asp-validation-for="ConfirmarContrasena"></span>
+                </div>
+
+                <div class="mb-3">
                     <label class="form-label" asp-for="Nombre">Nombre</label>
                     <input class="form-control text-center" asp-for="Nombre" placeholder="Juan Pérez" />
                     <span class="text-danger" asp-validation-for="Nombre"></span>
@@ -31,7 +37,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" asp-for="Telefono">Teléfono</label>
-                    <input class="form-control text-center" asp-for="Telefono" placeholder="11 2345-6789" />
+                    <input class="form-control text-center" asp-for="Telefono" placeholder="1123456789" inputmode="numeric" maxlength="10" />
                     <span class="text-danger" asp-validation-for="Telefono"></span>
                 </div>
 
@@ -48,3 +54,7 @@
         </div>
     </div>
 </div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

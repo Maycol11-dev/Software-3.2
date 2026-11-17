@@ -1,4 +1,6 @@
 using Business.Services;
+using Business.Validators;
+using FluentValidation;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -19,6 +21,7 @@ public static class BusinessServiceExtensions
         services.AddScoped<IPizzaService, PizzaService>();
         services.AddScoped<IPedidoService, PedidoService>();
         services.AddScoped<IUsuarioService, UsuarioService>();
+        services.AddValidatorsFromAssemblyContaining<RegistroUsuarioValidator>();
 
         return services;
     }

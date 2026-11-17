@@ -68,22 +68,6 @@ public class ClienteServiceTests
     }
 
     [Fact]
-    public async Task CreateAsync_SinNombre_LanzaExcepcion()
-    {
-        var cliente = new Cliente { Nombre = "", Direccion = "Calle 1" };
-
-        await Assert.ThrowsAsync<InvalidOperationException>(() => _service.CreateAsync(cliente));
-    }
-
-    [Fact]
-    public async Task CreateAsync_SinDireccion_LanzaExcepcion()
-    {
-        var cliente = new Cliente { Nombre = "Juan", Direccion = "" };
-
-        await Assert.ThrowsAsync<InvalidOperationException>(() => _service.CreateAsync(cliente));
-    }
-
-    [Fact]
     public async Task UpdateAsync_Valido_ActualizaCliente()
     {
         var cliente = new Cliente { IdCliente = 1, Nombre = "Juan", Direccion = "Calle 1" };

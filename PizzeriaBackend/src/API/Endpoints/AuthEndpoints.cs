@@ -1,3 +1,4 @@
+using API.Filters;
 using Business.Services;
 using Models;
 
@@ -13,7 +14,7 @@ public static class AuthEndpoints
         {
             var id = await service.RegistrarAsync(registro);
             return Results.Created($"/api/usuarios/{id}", new { id });
-        });
+        }).AddEndpointFilter<ValidationFilter<RegistroUsuario>>();
 
         group.MapPost("/login", async (LoginRequest request, IUsuarioService service, ITokenService tokenService) =>
         {
@@ -35,10 +36,8 @@ public static class AuthEndpoints
                 direccion = sesion.Direccion,
                 rolId = sesion.RolId
             });
-        });
+        }).AddEndpointFilter<ValidationFilter<LoginRequest>>();
 
         return app;
     }
 }
-
-public record LoginRequest(string Correo, string Contrasena);

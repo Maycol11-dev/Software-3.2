@@ -1,3 +1,4 @@
+using API.Filters;
 using Business.Services;
 using Models;
 using System.Security.Claims;
@@ -30,7 +31,7 @@ public static class PedidoEndpoints
 
             var id = await service.CreateAsync(request.ClienteId, pizzas);
             return Results.Created($"/api/pedidos/{id}", new { id });
-        }).RequireAuthorization();
+        }).RequireAuthorization().AddEndpointFilter<ValidationFilter<CrearPedidoRequest>>();
 
         group.MapPatch("/{id:int}/estado", async (int id, CambiarEstadoRequest request, IPedidoService service) =>
         {
@@ -47,9 +48,3 @@ public static class PedidoEndpoints
         return app;
     }
 }
-
-public record CrearPedidoRequest(int ClienteId, List<PedidoPizzaRequest> Pizzas);
-
-public record PedidoPizzaRequest(int IdPizza, int Cantidad);
-
-public record CambiarEstadoRequest(PedidoEstado Estado);

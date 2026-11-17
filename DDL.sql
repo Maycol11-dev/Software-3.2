@@ -32,7 +32,6 @@ CREATE TABLE Pizza (
     precio DECIMAL(8, 2) NOT NULL,
     imagen_url VARCHAR(255) NULL
 );
-
 CREATE TABLE Pedido (
     id INT AUTO_INCREMENT PRIMARY KEY,
     cliente_id INT NOT NULL,

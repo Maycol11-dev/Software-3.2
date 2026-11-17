@@ -237,3 +237,5 @@
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/bin/Debug/net8.0/Microsoft.IdentityModel.Logging.dll
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/bin/Debug/net8.0/Microsoft.IdentityModel.Tokens.dll
 /home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/bin/Debug/net8.0/System.IdentityModel.Tokens.Jwt.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/bin/Debug/net8.0/FluentValidation.dll
+/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Tests/bin/Debug/net8.0/FluentValidation.DependencyInjectionExtensions.dll

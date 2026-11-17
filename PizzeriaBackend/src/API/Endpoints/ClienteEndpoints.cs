@@ -1,3 +1,4 @@
+using API.Filters;
 using Business.Services;
 using Models;
 
@@ -22,14 +23,14 @@ public static class ClienteEndpoints
         {
             var id = await service.CreateAsync(cliente);
             return Results.Created($"/api/clientes/{id}", new { id });
-        }).RequireAuthorization();
+        }).RequireAuthorization().AddEndpointFilter<ValidationFilter<Cliente>>();
 
         group.MapPut("/{id:int}", async (int id, Cliente cliente, IClienteService service) =>
         {
             cliente.IdCliente = id;
             await service.UpdateAsync(cliente);
             return Results.NoContent();
-        }).RequireAuthorization();
+        }).RequireAuthorization().AddEndpointFilter<ValidationFilter<Cliente>>();
 
         group.MapDelete("/{id:int}", async (int id, IClienteService service) =>
         {

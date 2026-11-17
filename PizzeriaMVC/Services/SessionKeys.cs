@@ -1,4 +1,4 @@
-namespace PizzeriaMVC.Controllers;
+namespace PizzeriaMVC.Services;
 
 public static class SessionKeys
 {

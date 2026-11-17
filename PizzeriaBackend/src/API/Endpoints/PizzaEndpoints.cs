@@ -1,3 +1,4 @@
+using API.Filters;
 using Business.Services;
 using Models;
 
@@ -21,14 +22,14 @@ public static class PizzaEndpoints
         {
             var id = await service.CreateAsync(pizza);
             return Results.Created($"/api/pizzas/{id}", new { id });
-        });
+        }).AddEndpointFilter<ValidationFilter<Pizza>>();
 
         group.MapPut("/{id:int}", async (int id, Pizza pizza, IPizzaService service) =>
         {
             pizza.IdPizza = id;
             await service.UpdateAsync(pizza);
             return Results.NoContent();
-        });
+        }).AddEndpointFilter<ValidationFilter<Pizza>>();
 
         group.MapDelete("/{id:int}", async (int id, IPizzaService service) =>
         {

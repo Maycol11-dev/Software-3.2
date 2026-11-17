@@ -1,6 +1,6 @@
+using Business.Validators;
 using Data.Repositories;
 using Models;
-using System.Text.RegularExpressions;
 
 namespace Business.Services;
 
@@ -48,8 +48,6 @@ public class UsuarioService : IUsuarioService
 
     public async Task<int> RegistrarAsync(RegistroUsuario registro)
     {
-        Validar(registro);
-
         var correo = registro.Correo.Trim();
         if (await _usuarios.GetByCorreoAsync(correo) is not null)
         {
@@ -68,34 +66,11 @@ public class UsuarioService : IUsuarioService
         {
             UsuarioId = usuarioId,
             Nombre = registro.Nombre.Trim(),
-            Telefono = Regex.Replace(registro.Telefono ?? string.Empty, @"[^\d]", ""),
+            Telefono = TelefonoHelper.Normalizar(registro.Telefono),
             Direccion = registro.Direccion.Trim()
         };
         await _clientes.InsertAsync(cliente);
 
         return usuarioId;
-    }
-
-    private static void Validar(RegistroUsuario registro)
-    {
-        if (string.IsNullOrWhiteSpace(registro.Correo))
-        {
-            throw new InvalidOperationException("El correo es obligatorio.");
-        }
-
-        if (string.IsNullOrWhiteSpace(registro.Contrasena) || registro.Contrasena.Length < 6)
-        {
-            throw new InvalidOperationException("La contraseña debe tener al menos 6 caracteres.");
-        }
-
-        if (string.IsNullOrWhiteSpace(registro.Nombre))
-        {
-            throw new InvalidOperationException("El nombre es obligatorio.");
-        }
-
-        if (string.IsNullOrWhiteSpace(registro.Direccion))
-        {
-            throw new InvalidOperationException("La dirección es obligatoria.");
-        }
     }
 }

@@ -46,30 +46,6 @@ public class PizzaServiceTests
     }
 
     [Fact]
-    public async Task CreateAsync_PrecioCero_LanzaExcepcion()
-    {
-        var pizza = new Pizza { Nombre = "Muzzarella", Precio = 0 };
-
-        await Assert.ThrowsAsync<InvalidOperationException>(() => _service.CreateAsync(pizza));
-    }
-
-    [Fact]
-    public async Task CreateAsync_PrecioNegativo_LanzaExcepcion()
-    {
-        var pizza = new Pizza { Nombre = "Muzzarella", Precio = -100 };
-
-        await Assert.ThrowsAsync<InvalidOperationException>(() => _service.CreateAsync(pizza));
-    }
-
-    [Fact]
-    public async Task CreateAsync_SinNombre_LanzaExcepcion()
-    {
-        var pizza = new Pizza { Nombre = "", Precio = 1000 };
-
-        await Assert.ThrowsAsync<InvalidOperationException>(() => _service.CreateAsync(pizza));
-    }
-
-    [Fact]
     public async Task CreateAsync_Valido_InsertaPizza()
     {
         var pizza = new Pizza { Nombre = "Muzzarella", Precio = 1000 };

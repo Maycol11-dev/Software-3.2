@@ -1,6 +1,6 @@
 using System.Text.Json;
 
-namespace PizzeriaMVC.Controllers;
+namespace PizzeriaMVC.Services;
 
 public static class SessionExtensions
 {

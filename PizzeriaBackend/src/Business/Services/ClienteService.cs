@@ -1,6 +1,6 @@
+using Business.Validators;
 using Data.Repositories;
 using Models;
-using System.Text.RegularExpressions;
 
 namespace Business.Services;
 
@@ -19,30 +19,15 @@ public class ClienteService : IClienteService
 
     public async Task<int> CreateAsync(Cliente cliente)
     {
-        Validar(cliente);
-        cliente.Telefono = Regex.Replace(cliente.Telefono, @"[^\d]", "");
+        cliente.Telefono = TelefonoHelper.Normalizar(cliente.Telefono);
         return await _repositorio.InsertAsync(cliente);
     }
 
     public async Task UpdateAsync(Cliente cliente)
     {
-        Validar(cliente);
-        cliente.Telefono = Regex.Replace(cliente.Telefono, @"[^\d]", "");
+        cliente.Telefono = TelefonoHelper.Normalizar(cliente.Telefono);
         await _repositorio.UpdateAsync(cliente);
     }
 
     public async Task DeleteAsync(int id) => await _repositorio.DeleteAsync(id);
-
-    private static void Validar(Cliente cliente)
-    {
-        if (string.IsNullOrWhiteSpace(cliente.Nombre))
-        {
-            throw new InvalidOperationException("El nombre del cliente es obligatorio.");
-        }
-
-        if (string.IsNullOrWhiteSpace(cliente.Direccion))
-        {
-            throw new InvalidOperationException("La dirección del cliente es obligatoria.");
-        }
-    }
 }

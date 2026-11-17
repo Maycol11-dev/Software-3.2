@@ -162,10 +162,44 @@ public class ApiPizzeria
 
         try
         {
-            var problema = await response.Content.ReadFromJsonAsync<Dictionary<string, string>>(JsonOptions);
-            if (problema is not null && problema.TryGetValue("mensaje", out var mensaje))
+            using var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+            var raiz = json.RootElement;
+
+            if (raiz.ValueKind != JsonValueKind.Object)
             {
-                return mensaje;
+                return "No se pudo completar la operación. Intentá de nuevo.";
+            }
+
+            if (raiz.TryGetProperty("errors", out var errores) && errores.ValueKind == JsonValueKind.Object)
+            {
+                var mensajes = new List<string>();
+
+                foreach (var propiedad in errores.EnumerateObject())
+                {
+                    if (propiedad.Value.ValueKind != JsonValueKind.Array)
+                    {
+                        continue;
+                    }
+
+                    foreach (var error in propiedad.Value.EnumerateArray())
+                    {
+                        var mensaje = error.GetString();
+                        if (!string.IsNullOrWhiteSpace(mensaje) && !mensajes.Contains(mensaje))
+                        {
+                            mensajes.Add(mensaje);
+                        }
+                    }
+                }
+
+                if (mensajes.Count > 0)
+                {
+                    return string.Join(" ", mensajes);
+                }
+            }
+
+            if (raiz.TryGetProperty("mensaje", out var mensajeSimple) && mensajeSimple.ValueKind == JsonValueKind.String)
+            {
+                return mensajeSimple.GetString() ?? "No se pudo completar la operación. Intentá de nuevo.";
             }
         }
         catch (JsonException)
