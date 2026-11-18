@@ -28,7 +28,7 @@ Ejecutar `DDL.sql` y luego `INSERTS.sql` en MySQL.
 cd PizzeriaBackend/src/API
 dotnet run
 ```
-La API queda disponible en `http://localhost:5184`. Swagger en `/swagger` y Scalar en `/scalar`.
+La API queda disponible en `http://localhost:5184`. Documentación interactiva en Scalar en `/scalar/v1`.
 
 ### 3. MVC (Frontend web)
 ```bash
@@ -46,4 +46,4 @@ dotnet test Pizzeria.sln
 
 ## Documentación
 
-En la carpeta `Documentacion/` se encuentran explicaciones, diagramas (`*.canvas`) y material didáctico sobre sistemas distribuidos.
+En la carpeta `Documentacion/` se encuentran explicaciones, diagramas y material didáctico sobre sistemas distribuidos.

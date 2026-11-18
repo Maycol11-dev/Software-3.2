@@ -14,17 +14,45 @@ public static class PedidoEndpoints
         group.MapGet("/", async (IPedidoService service) => Results.Ok(await service.GetAllAsync()))
             .RequireAuthorization(policy => policy.RequireRole("Administrador"));
 
-        group.MapGet("/{id:int}", async (int id, IPedidoService service) =>
+        group.MapGet("/{id:int}", async (int id, IPedidoService service, ClaimsPrincipal usuario) =>
         {
             var pedido = await service.GetByIdAsync(id);
-            return pedido is null ? Results.NotFound() : Results.Ok(pedido);
-        });
+            if (pedido is null)
+            {
+                return Results.NotFound();
+            }
 
-        group.MapGet("/cliente/{clienteId:int}", async (int clienteId, IPedidoService service) =>
-            Results.Ok(await service.GetByClienteAsync(clienteId))).RequireAuthorization();
+            var esAdmin = usuario.IsInRole("Administrador");
+            var clienteIdClaim = usuario.FindFirst("clienteId")?.Value;
+            if (!esAdmin && (!int.TryParse(clienteIdClaim, out var clienteId) || pedido.IdCliente != clienteId))
+            {
+                return Results.Forbid();
+            }
+
+            return Results.Ok(pedido);
+        }).RequireAuthorization();
+
+        group.MapGet("/cliente/{clienteId:int}", async (int clienteId, IPedidoService service, ClaimsPrincipal usuario) =>
+        {
+            var esAdmin = usuario.IsInRole("Administrador");
+            var clienteIdClaim = usuario.FindFirst("clienteId")?.Value;
+            if (!esAdmin && (!int.TryParse(clienteIdClaim, out var cid) || cid != clienteId))
+            {
+                return Results.Forbid();
+            }
+
+            return Results.Ok(await service.GetByClienteAsync(clienteId));
+        }).RequireAuthorization();
 
         group.MapPost("/", async (CrearPedidoRequest request, IPedidoService service, ClaimsPrincipal usuario) =>
         {
+            var esAdmin = usuario.IsInRole("Administrador");
+            var clienteIdClaim = usuario.FindFirst("clienteId")?.Value;
+            if (!esAdmin && (!int.TryParse(clienteIdClaim, out var cid) || cid != request.ClienteId))
+            {
+                return Results.Forbid();
+            }
+
             var pizzas = request.Pizzas
                 .Select(p => new PedidoPizza { IdPizza = p.IdPizza, Cantidad = p.Cantidad })
                 .ToList();

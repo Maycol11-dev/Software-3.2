@@ -69,11 +69,13 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwagger(options =>
+    {
+        options.RouteTemplate = "/openapi/{documentName}.json";
+    });
     app.MapScalarApiReference(options =>
     {
-        options.WithOpenApiRoutePattern("/swagger/{documentName}/swagger.json");
+        options.WithOpenApiRoutePattern("/openapi/{documentName}.json");
         options.WithTitle("Pizzeria API");
     });
 }

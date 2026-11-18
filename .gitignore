@@ -1,0 +1,28 @@
+## Build and Debug Folders
+[Bb]in/
+[Oo]bj/
+[Tt]emp/
+[Ll]og/
+[Ll]ogs/
+
+## Visual Studio & VS Code
+.vs/
+.vscode/
+*.user
+*.userosscache
+*.suo
+*.sln.docstates
+*.DotSettings.user
+
+## NuGet
+*.nupkg
+*.snupkg
+project.lock.json
+project.assets.json
+
+## JetBrains / Rider
+.idea/
+
+## OS generated
+.DS_Store
+Thumbs.db

@@ -64,14 +64,6 @@ public class ApiPizzeria
         return pizzas.Where(p => pedidos.Contains(p.IdPizza)).ToDictionary(p => p.IdPizza);
     }
 
-    public async Task<int> CrearClienteAsync(ClienteDto cliente)
-    {
-        var response = await _client.PostAsJsonAsync("/api/clientes", cliente);
-        response.EnsureSuccessStatusCode();
-        var result = await response.Content.ReadFromJsonAsync<Dictionary<string, int>>();
-        return result?["id"] ?? 0;
-    }
-
     public async Task<int> CrearPedidoAsync(CrearPedidoDto pedido)
     {
         AgregarToken();
@@ -83,19 +75,12 @@ public class ApiPizzeria
 
     public async Task<PedidoDetalleDto?> GetPedidoAsync(int id)
     {
+        AgregarToken();
         var response = await _client.GetAsync($"/api/pedidos/{id}");
         if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
             return null;
         response.EnsureSuccessStatusCode();
         return await response.Content.ReadFromJsonAsync<PedidoDetalleDto>(JsonOptions);
-    }
-
-    public async Task<List<PedidoDetalleDto>> GetPedidosAsync()
-    {
-        AgregarToken();
-        var response = await _client.GetAsync("/api/pedidos");
-        response.EnsureSuccessStatusCode();
-        return await response.Content.ReadFromJsonAsync<List<PedidoDetalleDto>>(JsonOptions) ?? new();
     }
 
     public async Task<List<PedidoDetalleDto>> GetPedidosDeClienteAsync(int clienteId)
