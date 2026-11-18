@@ -12,7 +12,7 @@ public static class PedidoEndpoints
         var group = app.MapGroup("/api/pedidos").WithTags("Pedidos");
 
         group.MapGet("/", async (IPedidoService service) => Results.Ok(await service.GetAllAsync()))
-            .RequireAuthorization();
+            .RequireAuthorization(policy => policy.RequireRole("Administrador"));
 
         group.MapGet("/{id:int}", async (int id, IPedidoService service) =>
         {
@@ -37,13 +37,13 @@ public static class PedidoEndpoints
         {
             await service.ChangeEstadoAsync(id, request.Estado);
             return Results.NoContent();
-        }).RequireAuthorization();
+        }).RequireAuthorization(policy => policy.RequireRole("Administrador"));
 
         group.MapDelete("/{id:int}", async (int id, IPedidoService service) =>
         {
             await service.DeleteAsync(id);
             return Results.NoContent();
-        }).RequireAuthorization();
+        }).RequireAuthorization(policy => policy.RequireRole("Administrador"));
 
         return app;
     }

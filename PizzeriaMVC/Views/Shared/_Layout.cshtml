@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
@@ -24,7 +24,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav align-items-center">
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
@@ -34,26 +34,38 @@
 
                         @if (User.Identity?.IsAuthenticated == true)
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="MisPedidos" asp-action="MisPedidos">Mis pedidos</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <span class="nav-link">👤 @User.Identity.Name</span>
-                            </li>
-                            <li class="nav-item">
-                                <form asp-controller="Cuenta" asp-action="Logout" method="post" class="d-inline">
-                                    <button type="submit" class="nav-link btn btn-link">Salir</button>
-                                </form>
+                            <li class="nav-item dropdown ms-sm-2">
+                                <a class="nav-link dropdown-toggle btn btn-sm btn-outline-light rounded-pill px-3 py-1 text-white d-flex align-items-center gap-2"
+                                   href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <span>👤</span>
+                                    <span>@User.Identity.Name</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end shadow border-0 mt-2" aria-labelledby="userDropdown">
+                                    <li class="px-3 py-2 text-muted small border-bottom mb-1">
+                                        Conectado como<br><strong class="text-dark">@User.Identity.Name</strong>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" asp-controller="MisPedidos" asp-action="MisPedidos">
+                                            <span>📦</span> Mis pedidos
+                                        </a>
+                                    </li>
+                                    <li><hr class="dropdown-divider my-1"></li>
+                                    <li>
+                                        <form asp-controller="Cuenta" asp-action="Logout" method="post" class="m-0">
+                                            <button type="submit" class="dropdown-item d-flex align-items-center gap-2 py-2 text-danger">
+                                                <span>🚪</span> Salir
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
                             </li>
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Cuenta" asp-action="Login">Ingresar</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Cuenta" asp-action="Registro">Registrarse</a>
+                            <li class="nav-item ms-sm-2">
+                                <a class="btn btn-sm btn-outline-light rounded-pill px-3 py-1" asp-controller="Cuenta" asp-action="Login">
+                                    Ingresar
+                                </a>
                             </li>
                         }
                     </ul>

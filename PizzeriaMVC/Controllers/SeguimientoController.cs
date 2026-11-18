@@ -16,7 +16,7 @@ public class SeguimientoController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Seguimiento(int id, int paso = 1)
+    public async Task<IActionResult> Seguimiento(int id)
     {
         PedidoDetalleDto? pedido;
         try
@@ -28,6 +28,12 @@ public class SeguimientoController : Controller
             pedido = null;
         }
 
+        if (pedido is null)
+        {
+            TempData["MensajeError"] = $"No se encontró el pedido #{id}.";
+            return RedirectToAction("MisPedidos", "MisPedidos");
+        }
+
         var estados = new (string Nombre, string Emoji)[]
         {
             ("Espera de confirmación", "🕐"),
@@ -36,24 +42,20 @@ public class SeguimientoController : Controller
             ("Entregado", "🍕")
         };
 
-        int pasoActual = paso;
-        if (pedido is not null)
+        int pasoActual = pedido.Estado switch
         {
-            pasoActual = pedido.Estado switch
-            {
-                "EsperaDeConfirmacion" => 1,
-                "EnPreparacion" => 2,
-                "EnViaje" => 3,
-                "Entregado" => 4,
-                _ => paso
-            };
-        }
+            "EsperaDeConfirmacion" => 1,
+            "EnPreparacion" => 2,
+            "EnViaje" => 3,
+            "Entregado" => 4,
+            _ => 1
+        };
 
         var modelo = new SeguimientoViewModel
         {
             IdPedido = id,
-            Total = pedido?.Total ?? 54700,
-            DireccionEntrega = pedido?.DireccionEntrega ?? "Av. Siempre Viva 123",
+            Total = pedido.Total,
+            DireccionEntrega = pedido.DireccionEntrega,
             Pasos = estados
                 .Select((e, i) => new EstadoPedidoStep
                 {
@@ -63,13 +65,13 @@ public class SeguimientoController : Controller
                     Activo = i + 1 == pasoActual
                 })
                 .ToList(),
-            Items = pedido?.Pizzas.Select(i => new PedidoHistorialItem
+            Items = pedido.Pizzas.Select(i => new PedidoHistorialItem
             {
                 IdPizza = i.IdPizza,
                 Nombre = i.NombrePizza,
                 Precio = i.PrecioUnitario,
                 Cantidad = i.Cantidad
-            }).ToList() ?? new List<PedidoHistorialItem>()
+            }).ToList()
         };
 
         return View(modelo);

@@ -11,7 +11,7 @@ public static class ClienteEndpoints
         var group = app.MapGroup("/api/clientes").WithTags("Clientes");
 
         group.MapGet("/", async (IClienteService service) => Results.Ok(await service.GetAllAsync()))
-            .RequireAuthorization();
+            .RequireAuthorization(policy => policy.RequireRole("Administrador"));
 
         group.MapGet("/{id:int}", async (int id, IClienteService service) =>
         {
@@ -36,7 +36,7 @@ public static class ClienteEndpoints
         {
             await service.DeleteAsync(id);
             return Results.NoContent();
-        }).RequireAuthorization();
+        }).RequireAuthorization(policy => policy.RequireRole("Administrador"));
 
         return app;
     }

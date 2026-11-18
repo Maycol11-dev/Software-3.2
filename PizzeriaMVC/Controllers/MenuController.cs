@@ -18,9 +18,18 @@ public class MenuController : Controller
     [HttpGet]
     public async Task<IActionResult> Menu()
     {
-        var carrito = await _carrito.ObtenerHidratado(HttpContext.Session);
+        List<PizzaMenuItem> pizzas;
+        try
+        {
+            pizzas = await _api.GetPizzasAsync();
+        }
+        catch (HttpRequestException)
+        {
+            pizzas = new List<PizzaMenuItem>();
+            TempData["MensajeError"] = "No se pudo conectar con el servicio de pizzas. Verificá que la API esté iniciada.";
+        }
 
-        var pizzas = await _api.GetPizzasAsync();
+        var carrito = await _carrito.ObtenerHidratado(HttpContext.Session);
 
         var modelo = new MenuViewModel
         {

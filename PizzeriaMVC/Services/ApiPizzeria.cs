@@ -3,7 +3,6 @@ using System.Text;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Caching.Memory;
-using PizzeriaMVC.Data;
 using PizzeriaMVC.Models;
 
 namespace PizzeriaMVC.Services;
@@ -45,17 +44,9 @@ public class ApiPizzeria
             return cacheadas;
         }
 
-        List<PizzaMenuItem> pizzas;
-        try
-        {
-            var response = await _client.GetAsync("/api/pizzas");
-            response.EnsureSuccessStatusCode();
-            pizzas = await response.Content.ReadFromJsonAsync<List<PizzaMenuItem>>(JsonOptions) ?? new();
-        }
-        catch (HttpRequestException)
-        {
-            return MenuMock.Pizzas;
-        }
+        var response = await _client.GetAsync("/api/pizzas");
+        response.EnsureSuccessStatusCode();
+        var pizzas = await response.Content.ReadFromJsonAsync<List<PizzaMenuItem>>(JsonOptions) ?? new();
 
         _cache.Set(CacheKeyPizzas, pizzas, CacheDuracion);
         return pizzas;

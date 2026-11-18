@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "R58d0+QWKqA=",
+  "dgSpecHash": "49drIvA2rtc=",
   "success": true,
   "projectFilePath": "/home/alconz/Documentos/Software-3.2/PizzeriaBackend/src/Business/Business.csproj",
   "expectedPackageFiles": [
@@ -16,9 +16,7 @@
     "/home/alconz/.nuget/packages/microsoft.identitymodel.logging/7.1.2/microsoft.identitymodel.logging.7.1.2.nupkg.sha512",
     "/home/alconz/.nuget/packages/microsoft.identitymodel.tokens/7.1.2/microsoft.identitymodel.tokens.7.1.2.nupkg.sha512",
     "/home/alconz/.nuget/packages/mysqlconnector/2.6.2/mysqlconnector.2.6.2.nupkg.sha512",
-    "/home/alconz/.nuget/packages/system.identitymodel.tokens.jwt/7.1.2/system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512",
-    "/home/alconz/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.33/microsoft.aspnetcore.app.ref.8.0.33.nupkg.sha512",
-    "/home/alconz/.nuget/packages/microsoft.netcore.app.ref/8.0.33/microsoft.netcore.app.ref.8.0.33.nupkg.sha512"
+    "/home/alconz/.nuget/packages/system.identitymodel.tokens.jwt/7.1.2/system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512"
   ],
   "logs": []
 }

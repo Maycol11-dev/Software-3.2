@@ -58,6 +58,29 @@ footer {
     color: #ffe0d6;
 }
 
+.navbar-pizzeria .dropdown-menu {
+    border-radius: 12px;
+    padding: 0.5rem;
+    min-width: 200px;
+}
+
+.navbar-pizzeria .dropdown-item {
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #212529;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.navbar-pizzeria .dropdown-item:hover {
+    background-color: #fff2ed;
+    color: var(--pizza-rojo);
+}
+
+.navbar-pizzeria .dropdown-item.text-danger:hover {
+    background-color: #fee2e2;
+    color: #dc2626 !important;
+}
+
 .brand-logo {
     font-size: 1.4rem;
     display: inline-flex;

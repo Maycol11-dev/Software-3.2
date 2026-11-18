@@ -16,14 +16,12 @@ public class PedidoService : IPedidoService
     private readonly IPedidoRepository _pedidos;
     private readonly IClienteRepository _clientes;
     private readonly IPizzaRepository _pizzas;
-    private readonly ICocinaGateway _cocina;
 
-    public PedidoService(IPedidoRepository pedidos, IClienteRepository clientes, IPizzaRepository pizzas, ICocinaGateway cocina)
+    public PedidoService(IPedidoRepository pedidos, IClienteRepository clientes, IPizzaRepository pizzas)
     {
         _pedidos = pedidos;
         _clientes = clientes;
         _pizzas = pizzas;
-        _cocina = cocina;
     }
 
     public async Task<IEnumerable<Pedido>> GetAllAsync() => await _pedidos.GetAllAsync();
@@ -79,15 +77,6 @@ public class PedidoService : IPedidoService
         {
             throw new InvalidOperationException(
                 $"No se puede pasar el pedido de {pedido.Estado} a {nuevoEstado}.");
-        }
-
-        if (nuevoEstado == PedidoEstado.EnPreparacion)
-        {
-            var respuesta = await _cocina.PrepararPedidoAsync(id);
-            if (!respuesta.StartsWith("LISTO", StringComparison.OrdinalIgnoreCase))
-            {
-                throw new InvalidOperationException($"La cocina no confirmó la preparación: {respuesta}");
-            }
         }
 
         await _pedidos.UpdateEstadoAsync(id, nuevoEstado);

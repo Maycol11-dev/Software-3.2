@@ -10,11 +10,6 @@ public static class BusinessServiceExtensions
 {
     public static IServiceCollection AddBusiness(this IServiceCollection services, IConfiguration configuration)
     {
-        var host = configuration["CocinaSocket:Host"] ?? "127.0.0.1";
-        var puerto = int.TryParse(configuration["CocinaSocket:Port"], out var p) ? p : 5000;
-
-        services.AddSingleton<ICocinaGateway>(new CocinaSocketClient(host, puerto));
-
         services.AddSingleton<IPasswordHasher, PasswordHasher>();
         services.AddScoped<ITokenService, TokenService>();
         services.AddScoped<IClienteService, ClienteService>();

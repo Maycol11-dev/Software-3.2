@@ -10,7 +10,6 @@ public class PedidoServiceTests
     private readonly Mock<IPedidoRepository> _pedidoRepoMock;
     private readonly Mock<IClienteRepository> _clienteRepoMock;
     private readonly Mock<IPizzaRepository> _pizzaRepoMock;
-    private readonly Mock<ICocinaGateway> _cocinaMock;
     private readonly PedidoService _service;
 
     public PedidoServiceTests()
@@ -18,8 +17,7 @@ public class PedidoServiceTests
         _pedidoRepoMock = new Mock<IPedidoRepository>();
         _clienteRepoMock = new Mock<IClienteRepository>();
         _pizzaRepoMock = new Mock<IPizzaRepository>();
-        _cocinaMock = new Mock<ICocinaGateway>();
-        _service = new PedidoService(_pedidoRepoMock.Object, _clienteRepoMock.Object, _pizzaRepoMock.Object, _cocinaMock.Object);
+        _service = new PedidoService(_pedidoRepoMock.Object, _clienteRepoMock.Object, _pizzaRepoMock.Object);
     }
 
     [Fact]
@@ -167,57 +165,10 @@ public class PedidoServiceTests
     {
         var pedido = new Pedido { IdPedido = 1, Estado = PedidoEstado.EsperaDeConfirmacion };
         _pedidoRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(pedido);
-        _cocinaMock.Setup(c => c.PrepararPedidoAsync(1)).ReturnsAsync("LISTO 1");
 
         await _service.ChangeEstadoAsync(1, PedidoEstado.EnPreparacion);
 
-        _cocinaMock.Verify(c => c.PrepararPedidoAsync(1), Times.Once);
         _pedidoRepoMock.Verify(r => r.UpdateEstadoAsync(1, PedidoEstado.EnPreparacion), Times.Once);
-    }
-
-    [Fact]
-    public async Task ChangeEstadoAsync_EnPreparacion_DelegaEnCocina()
-    {
-        var pedido = new Pedido { IdPedido = 1, Estado = PedidoEstado.EsperaDeConfirmacion };
-        _pedidoRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(pedido);
-        _cocinaMock.Setup(c => c.PrepararPedidoAsync(1)).ReturnsAsync("LISTO 1");
-
-        await _service.ChangeEstadoAsync(1, PedidoEstado.EnPreparacion);
-
-        _cocinaMock.Verify(c => c.PrepararPedidoAsync(1), Times.Once);
-    }
-
-    [Fact]
-    public async Task ChangeEstadoAsync_EnPreparacion_CocinaNoConfirma_LanzaExcepcion()
-    {
-        var pedido = new Pedido { IdPedido = 1, Estado = PedidoEstado.EsperaDeConfirmacion };
-        _pedidoRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(pedido);
-        _cocinaMock.Setup(c => c.PrepararPedidoAsync(1)).ReturnsAsync("ERROR horno apagado");
-
-        await Assert.ThrowsAsync<InvalidOperationException>(() => _service.ChangeEstadoAsync(1, PedidoEstado.EnPreparacion));
-        _pedidoRepoMock.Verify(r => r.UpdateEstadoAsync(It.IsAny<int>(), It.IsAny<PedidoEstado>()), Times.Never);
-    }
-
-    [Fact]
-    public async Task ChangeEstadoAsync_EnPreparacion_CocinaCaida_LanzaExcepcion()
-    {
-        var pedido = new Pedido { IdPedido = 1, Estado = PedidoEstado.EsperaDeConfirmacion };
-        _pedidoRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(pedido);
-        _cocinaMock.Setup(c => c.PrepararPedidoAsync(1)).ThrowsAsync(new InvalidOperationException("La cocina no está disponible"));
-
-        await Assert.ThrowsAsync<InvalidOperationException>(() => _service.ChangeEstadoAsync(1, PedidoEstado.EnPreparacion));
-        _pedidoRepoMock.Verify(r => r.UpdateEstadoAsync(It.IsAny<int>(), It.IsAny<PedidoEstado>()), Times.Never);
-    }
-
-    [Fact]
-    public async Task ChangeEstadoAsync_TransicionQueNoIniciaPreparacion_NoLlamaCocina()
-    {
-        var pedido = new Pedido { IdPedido = 1, Estado = PedidoEstado.EnPreparacion };
-        _pedidoRepoMock.Setup(r => r.GetByIdAsync(1)).ReturnsAsync(pedido);
-
-        await _service.ChangeEstadoAsync(1, PedidoEstado.EnViaje);
-
-        _cocinaMock.Verify(c => c.PrepararPedidoAsync(It.IsAny<int>()), Times.Never);
     }
 
     [Fact]

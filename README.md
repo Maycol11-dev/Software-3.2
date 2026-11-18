@@ -9,11 +9,10 @@ Sistema de gestión de pizzería desarrollado para la materia **Software 3.2** d
 
 ## Arquitectura
 
-El proyecto está dividido en tres componentes principales:
+El proyecto está dividido en dos componentes principales:
 
-- **PizzeriaBackend**: API REST en .NET 8 (Clean Architecture: Models, Data, Business, API, Tests). Autenticación con hash PBKDF2.
+- **PizzeriaBackend**: API REST en .NET 8 (Clean Architecture: Models, Data, Business, API, Tests). Autenticación JWT y hash PBKDF2. Los estados del pedido los gestiona el Administrador directamente desde la API.
 - **PizzeriaMVC**: Aplicación ASP.NET Core MVC como cliente web (menú, carrito, autenticación, seguimiento de pedidos).
-- **Cocina**: Aplicación de consola TCP que simula la preparación de pedidos (puerto 5000).
 
 ## Base de datos
 
@@ -37,12 +36,6 @@ cd PizzeriaMVC
 dotnet run
 ```
 Disponible en `http://localhost:5032`.
-
-### 4. Cocina (simulador)
-```bash
-cd Cocina
-dotnet run
-```
 
 ## Tests
 

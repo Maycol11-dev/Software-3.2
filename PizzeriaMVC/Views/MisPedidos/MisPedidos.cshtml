@@ -41,8 +41,7 @@ else
                         <a class="btn btn-pizza-verde"
                            asp-controller="Seguimiento"
                            asp-action="Seguimiento"
-                           asp-route-id="@pedido.Id"
-                           asp-route-paso="@(esReciente ? 2 : 4)">Seguir pedido</a>
+                           asp-route-id="@pedido.Id">Seguir pedido</a>
                         <form asp-action="Repetir" method="post" class="m-0">
                             <input type="hidden" name="id" value="@pedido.Id" />
                             <button type="submit" class="btn btn-pizza">Repetir pedido</button>

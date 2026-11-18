@@ -4,6 +4,16 @@ using Models;
 
 namespace API.Endpoints;
 
+public record LoginResponse(
+    string Token,
+    int UsuarioId,
+    int ClienteId,
+    string Correo,
+    string Nombre,
+    string Telefono,
+    string Direccion,
+    int RolId);
+
 public static class AuthEndpoints
 {
     public static IEndpointRouteBuilder MapAuthEndpoints(this IEndpointRouteBuilder app)
@@ -25,18 +35,19 @@ public static class AuthEndpoints
             }
 
             var token = tokenService.GenerarToken(sesion);
-            return Results.Ok(new
-            {
+            return Results.Ok(new LoginResponse(
                 token,
-                usuarioId = sesion.UsuarioId,
-                clienteId = sesion.ClienteId,
-                correo = sesion.Correo,
-                nombre = sesion.Nombre,
-                telefono = sesion.Telefono,
-                direccion = sesion.Direccion,
-                rolId = sesion.RolId
-            });
-        }).AddEndpointFilter<ValidationFilter<LoginRequest>>();
+                sesion.UsuarioId,
+                sesion.ClienteId,
+                sesion.Correo,
+                sesion.Nombre,
+                sesion.Telefono,
+                sesion.Direccion,
+                sesion.RolId));
+        })
+        .AddEndpointFilter<ValidationFilter<LoginRequest>>()
+        .Produces<LoginResponse>(200)
+        .Produces(401);
 
         return app;
     }

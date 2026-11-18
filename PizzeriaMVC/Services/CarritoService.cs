@@ -79,15 +79,22 @@ public class CarritoService
             return;
         }
 
-        var pizzas = await _api.GetPizzasPorIdAsync(carrito.Items.Select(i => i.IdPizza));
-
-        foreach (var item in carrito.Items)
+        try
         {
-            if (pizzas.TryGetValue(item.IdPizza, out var pizza))
+            var pizzas = await _api.GetPizzasPorIdAsync(carrito.Items.Select(i => i.IdPizza));
+
+            foreach (var item in carrito.Items)
             {
-                item.Nombre = pizza.Nombre;
-                item.Precio = pizza.Precio;
+                if (pizzas.TryGetValue(item.IdPizza, out var pizza))
+                {
+                    item.Nombre = pizza.Nombre;
+                    item.Precio = pizza.Precio;
+                }
             }
+        }
+        catch (HttpRequestException)
+        {
+            // Si la API no está disponible, no hidratamos nombres/precios pero evitamos que rompa la vista
         }
     }
 }

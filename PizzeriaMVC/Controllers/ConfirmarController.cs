@@ -55,7 +55,7 @@ public class ConfirmarController : Controller
 
                 _carrito.Guardar(HttpContext.Session, new CarritoViewModel());
                 TempData["MensajeExito"] = $"Pedido recibido. ¡Gracias {User.Identity?.Name}!";
-                return RedirectToAction(nameof(SeguimientoController.Seguimiento), "Seguimiento", new { id = pedidoId, paso = 1 });
+                return RedirectToAction(nameof(SeguimientoController.Seguimiento), "Seguimiento", new { id = pedidoId });
             }
             catch (HttpRequestException)
             {
