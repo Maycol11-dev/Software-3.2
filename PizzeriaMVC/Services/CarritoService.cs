@@ -94,7 +94,6 @@ public class CarritoService
         }
         catch (HttpRequestException)
         {
-            // Si la API no está disponible, no hidratamos nombres/precios pero evitamos que rompa la vista
         }
     }
 }

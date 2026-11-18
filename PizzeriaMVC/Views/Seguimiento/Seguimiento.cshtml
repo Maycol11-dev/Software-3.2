@@ -50,7 +50,7 @@
         <div class="seccion-datos">
             <h5 class="fw-bold titulo-seccion mb-2">👨‍🍳 Estado actual</h5>
             @{
-                var actual = Model.Pasos.FirstOrDefault(p => p.Activo);
+                var actual = Model.Pasos.FirstOrDefault(p => p.Activo) ?? Model.Pasos.LastOrDefault();
                 var emoji = actual?.Emoji ?? "🍕";
                 var nombre = actual?.Nombre ?? "Desconocido";
             }

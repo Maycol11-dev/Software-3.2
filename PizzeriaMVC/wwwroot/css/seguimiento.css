@@ -33,6 +33,12 @@
     box-shadow: 0 0 0 6px rgba(192, 57, 43, 0.15);
 }
 
+.stepper .step:last-child.activo .step-circle {
+    border-color: var(--pizza-verde);
+    background-color: var(--pizza-verde);
+    box-shadow: 0 0 0 6px rgba(39, 174, 96, 0.2);
+}
+
 .stepper .step.completo .step-circle {
     border-color: var(--pizza-verde);
     background-color: var(--pizza-verde);
