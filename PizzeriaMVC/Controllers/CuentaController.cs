@@ -46,7 +46,7 @@ public class CuentaController : Controller
 
             await IniciarSesion(sesion);
             TempData["MensajeExito"] = $"¡Bienvenido, {sesion.Nombre}! Tu cuenta está lista.";
-            return RedirectToAction(nameof(MenuController.Menu), "Menu");
+            return RedirectToAction(nameof(MenuController.Index), "Menu");
         }
         catch (ApiException ex)
         {
@@ -88,7 +88,7 @@ public class CuentaController : Controller
                 return Redirect(modelo.ReturnUrl);
             }
 
-            return RedirectToAction(nameof(MenuController.Menu), "Menu");
+            return RedirectToAction(nameof(MenuController.Index), "Menu");
         }
         catch (ApiException ex)
         {
@@ -120,12 +120,16 @@ public class CuentaController : Controller
             new("clienteId", sesion.ClienteId.ToString()),
             new("telefono", sesion.Telefono),
             new("direccion", sesion.Direccion),
-            new(ClaimTypes.Role, sesion.RolId == 2 ? "Administrador" : "Cliente")
+            new(ClaimTypes.Role, sesion.RolId == 2 ? "Administrador" : "Cliente"),
+            new("jwtToken", sesion.Token)
         };
 
         var identidad = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
         await HttpContext.SignInAsync(
             CookieAuthenticationDefaults.AuthenticationScheme,
             new ClaimsPrincipal(identidad));
+
+        // También lo guardamos en session para la solicitud actual
+        HttpContext.Session.SetString(ApiPizzeria.SessionKeyToken, sesion.Token);
     }
 }

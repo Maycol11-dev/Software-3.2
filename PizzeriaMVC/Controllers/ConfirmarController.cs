@@ -60,11 +60,11 @@ public class ConfirmarController : Controller
             catch (HttpRequestException)
             {
                 TempData["MensajeError"] = "No se pudo procesar el pedido. El servidor no está disponible.";
-                return RedirectToAction(nameof(MenuController.Menu), "Menu");
+                return RedirectToAction(nameof(MenuController.Index), "Menu");
             }
         }
 
         _carrito.Guardar(HttpContext.Session, new CarritoViewModel());
-        return RedirectToAction(nameof(MenuController.Menu), "Menu");
+        return RedirectToAction(nameof(MenuController.Index), "Menu");
     }
 }

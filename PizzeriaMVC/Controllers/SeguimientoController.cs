@@ -31,7 +31,7 @@ public class SeguimientoController : Controller
         if (pedido is null)
         {
             TempData["MensajeError"] = $"No se encontró el pedido #{id}.";
-            return RedirectToAction("MisPedidos", "MisPedidos");
+            return RedirectToAction(nameof(MisPedidosController.Index), "MisPedidos");
         }
 
         var estados = new (string Nombre, string Emoji)[]

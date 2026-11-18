@@ -29,7 +29,7 @@
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-controller="Menu" asp-action="Menu">Menú</a>
+                            <a class="nav-link" asp-controller="Menu" asp-action="Index">Menú</a>
                         </li>
 
                         @if (User.Identity?.IsAuthenticated == true)
@@ -45,7 +45,7 @@
                                         Conectado como<br><strong class="text-dark">@User.Identity.Name</strong>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" asp-controller="MisPedidos" asp-action="MisPedidos">
+                                        <a class="dropdown-item d-flex align-items-center gap-2 py-2" asp-controller="MisPedidos" asp-action="Index">
                                             <span>📦</span> Mis pedidos
                                         </a>
                                     </li>

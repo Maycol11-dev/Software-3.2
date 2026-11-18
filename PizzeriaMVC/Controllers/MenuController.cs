@@ -16,7 +16,7 @@ public class MenuController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> Menu()
+    public async Task<IActionResult> Index()
     {
         List<PizzaMenuItem> pizzas;
         try
@@ -44,7 +44,7 @@ public class MenuController : Controller
     public IActionResult Agregar(int id, int cantidad = 1)
     {
         _carrito.Agregar(HttpContext.Session, id, Math.Max(1, cantidad));
-        return RedirectToAction(nameof(Menu));
+        return RedirectToAction(nameof(Index));
     }
 
     [HttpPost]
@@ -71,7 +71,7 @@ public class MenuController : Controller
     public IActionResult Quitar(int id)
     {
         _carrito.Quitar(HttpContext.Session, id);
-        return RedirectToAction(nameof(Menu));
+        return RedirectToAction(nameof(Index));
     }
 
     private async Task<object> RespuestaCarrito()

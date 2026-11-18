@@ -33,6 +33,18 @@ public class ApiPizzeria
     private void AgregarToken()
     {
         var token = _http.HttpContext?.Session.GetString(SessionKeyToken);
+
+        // Si la session se perdió (ej: reinicio del MVC), recuperar el token del claim de la cookie
+        if (string.IsNullOrEmpty(token))
+        {
+            token = _http.HttpContext?.User.FindFirst("jwtToken")?.Value;
+            if (!string.IsNullOrEmpty(token))
+            {
+                // Restaurar en session para las siguientes solicitudes de esta sesión
+                _http.HttpContext?.Session.SetString(SessionKeyToken, token);
+            }
+        }
+
         _client.DefaultRequestHeaders.Authorization =
             string.IsNullOrEmpty(token) ? null : new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
     }

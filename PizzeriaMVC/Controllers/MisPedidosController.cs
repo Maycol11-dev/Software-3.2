@@ -18,7 +18,7 @@ public class MisPedidosController : Controller
     }
 
     [HttpGet]
-    public async Task<IActionResult> MisPedidos()
+    public async Task<IActionResult> Index()
     {
         List<PedidoDetalleDto> pedidosApi;
         var clienteId = int.Parse(User.FindFirst("clienteId")?.Value ?? "0");
@@ -69,6 +69,6 @@ public class MisPedidosController : Controller
             TempData["MensajeInfo"] = $"Pedido #{pedido.IdPedido} agregado al carrito.";
         }
 
-        return RedirectToAction(nameof(MenuController.Menu), "Menu");
+        return RedirectToAction(nameof(MenuController.Index), "Menu");
     }
 }
