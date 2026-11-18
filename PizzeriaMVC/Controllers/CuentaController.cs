@@ -117,9 +117,9 @@ public class CuentaController : Controller
             new(ClaimTypes.NameIdentifier, sesion.UsuarioId.ToString()),
             new(ClaimTypes.Name, sesion.Nombre),
             new(ClaimTypes.Email, sesion.Correo),
-            new("ClienteId", sesion.ClienteId.ToString()),
-            new("Telefono", sesion.Telefono),
-            new("Direccion", sesion.Direccion),
+            new("clienteId", sesion.ClienteId.ToString()),
+            new("telefono", sesion.Telefono),
+            new("direccion", sesion.Direccion),
             new(ClaimTypes.Role, sesion.RolId == 2 ? "Administrador" : "Cliente")
         };
 

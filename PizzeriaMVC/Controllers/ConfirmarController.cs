@@ -25,8 +25,8 @@ public class ConfirmarController : Controller
         {
             Carrito = await _carrito.ObtenerHidratado(HttpContext.Session),
             Nombre = User.Identity?.Name ?? string.Empty,
-            Telefono = User.FindFirst("Telefono")?.Value ?? string.Empty,
-            Direccion = User.FindFirst("Direccion")?.Value ?? string.Empty
+            Telefono = User.FindFirst("telefono")?.Value ?? string.Empty,
+            Direccion = User.FindFirst("direccion")?.Value ?? string.Empty
         };
 
         return View(modelo);
@@ -39,7 +39,7 @@ public class ConfirmarController : Controller
 
         if (!carrito.Vacio)
         {
-            var clienteId = int.Parse(User.FindFirst("ClienteId")?.Value ?? "0");
+            var clienteId = int.Parse(User.FindFirst("clienteId")?.Value ?? "0");
 
             try
             {

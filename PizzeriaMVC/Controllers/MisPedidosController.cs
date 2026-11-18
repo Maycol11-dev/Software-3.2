@@ -21,7 +21,7 @@ public class MisPedidosController : Controller
     public async Task<IActionResult> MisPedidos()
     {
         List<PedidoDetalleDto> pedidosApi;
-        var clienteId = int.Parse(User.FindFirst("ClienteId")?.Value ?? "0");
+        var clienteId = int.Parse(User.FindFirst("clienteId")?.Value ?? "0");
         try
         {
             pedidosApi = await _api.GetPedidosDeClienteAsync(clienteId);
