@@ -12,7 +12,7 @@ builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>
 {
     options.Cookie.Name = ".PizzeriaMVC.Session";
-    options.IdleTimeout = TimeSpan.FromMinutes(20);
+    options.IdleTimeout = TimeSpan.FromHours(2);
 });
 builder.Services.AddHttpClient<ApiPizzeria>();
 builder.Services.AddHttpContextAccessor();
