@@ -62,6 +62,57 @@ public class ApiPizzeria
         return pizzas;
     }
 
+    public async Task<PizzaMenuItem?> GetPizzaPorIdAsync(int id)
+    {
+        var response = await _client.GetAsync($"/api/pizzas/{id}");
+        if (response.StatusCode == HttpStatusCode.NotFound)
+        {
+            return null;
+        }
+
+        response.EnsureSuccessStatusCode();
+        return await response.Content.ReadFromJsonAsync<PizzaMenuItem>(JsonOptions);
+    }
+
+    public async Task CrearPizzaAsync(PizzaFormViewModel modelo)
+    {
+        AgregarToken();
+        var response = await _client.PostAsJsonAsync("/api/pizzas", new
+        {
+            nombre = modelo.Nombre,
+            descripcion = modelo.Descripcion,
+            precio = modelo.Precio,
+            imagenUrl = modelo.ImagenUrl
+        });
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new ApiException(await LeerMensajeError(response));
+        }
+
+        _cache.Remove(CacheKeyPizzas);
+    }
+
+    public async Task ActualizarPizzaAsync(PizzaFormViewModel modelo)
+    {
+        AgregarToken();
+        var response = await _client.PutAsJsonAsync($"/api/pizzas/{modelo.IdPizza}", new
+        {
+            idPizza = modelo.IdPizza,
+            nombre = modelo.Nombre,
+            descripcion = modelo.Descripcion,
+            precio = modelo.Precio,
+            imagenUrl = modelo.ImagenUrl
+        });
+
+        if (!response.IsSuccessStatusCode)
+        {
+            throw new ApiException(await LeerMensajeError(response));
+        }
+
+        _cache.Remove(CacheKeyPizzas);
+    }
+
     public async Task<Dictionary<int, PizzaMenuItem>> GetPizzasPorIdAsync(IEnumerable<int> ids)
     {
         var pedidos = ids.Distinct().ToList();

@@ -18,19 +18,27 @@
 
 <div class="seccion-datos py-5 px-3">
     @{
-        var completos = Model.Pasos.Count(p => p.Completo);
-        var actuales = Model.Pasos.Any(p => p.Activo) ? 1 : 0;
-        var progreso = Math.Clamp((completos + actuales) * 33.33, 0, 100);
+        var alcanzados = Model.Pasos.Count(p => p.Completo);
+        // De 1 a 4 pasos: 0% en paso 1 (centrado en el primer círculo), 33% en 2, 66% en 3, 100% en 4.
+        var porcentajeProgreso = alcanzados switch
+        {
+            1 => 0,
+            2 => 33.33,
+            3 => 66.66,
+            4 => 100,
+            _ => 0
+        };
     }
     <div class="stepper mx-auto" style="max-width: 820px;">
-        <div class="progreso" style="width: @(progreso)%"></div>
+        <div class="progreso" style="width: @(porcentajeProgreso)%"></div>
 
         @foreach (var paso in Model.Pasos)
         {
-            var clase = paso.Completo ? "completo" : paso.Activo ? "activo" : "";
+            var clase = paso.Completo ? "completo" : "";
+            if (paso.Activo) { clase += " activo"; }
             <div class="step @clase">
                 <div class="step-circle">
-                    @if (paso.Completo)
+                    @if (paso.Completo && !paso.Activo)
                     {
                         <span>✔</span>
                     }

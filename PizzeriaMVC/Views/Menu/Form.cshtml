@@ -1,0 +1,90 @@
+@model PizzeriaMVC.Models.PizzaFormViewModel
+@{
+    var titulo = Model.EsEdicion ? $"Editar pizza: {Model.Nombre}" : "Nueva pizza";
+    ViewData["Title"] = titulo;
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-7 col-md-9">
+        <div class="card shadow-sm border-0 rounded-4 p-4 mt-2">
+            <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
+                <h3 class="fw-bold m-0 titulo-seccion">
+                    @(Model.EsEdicion ? "✏️ Editar pizza" : "🍕 Nueva pizza")
+                </h3>
+                <a asp-controller="Menu" asp-action="Index" class="btn btn-outline-secondary btn-sm rounded-pill px-3">
+                    ← Volver al menú
+                </a>
+            </div>
+
+            <form asp-controller="Menu" asp-action="Guardar" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <input type="hidden" asp-for="IdPizza" />
+                <input type="hidden" asp-for="ImagenUrl" id="hiddenImagenUrl" />
+
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Nombre" class="form-label fw-semibold">Nombre de la pizza</label>
+                    <input asp-for="Nombre" class="form-control" placeholder="Ej: Fugazzeta Rellena" autofocus />
+                    <span asp-validation-for="Nombre" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Descripcion" class="form-label fw-semibold">Descripción / Ingredientes</label>
+                    <textarea asp-for="Descripcion" class="form-control" rows="3" placeholder="Ej: Mucha cebolla salteada, doble capa de queso mozzarella y orégano."></textarea>
+                    <span asp-validation-for="Descripcion" class="text-danger small"></span>
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="Precio" class="form-label fw-semibold">Precio ($)</label>
+                        <div class="input-group">
+                            <span class="input-group-text">$</span>
+                            <input asp-for="Precio" type="number" step="0.01" min="0" class="form-control" placeholder="0.00" />
+                        </div>
+                        <span asp-validation-for="Precio" class="text-danger small"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label asp-for="ArchivoImagen" class="form-label fw-semibold">Subir imagen</label>
+                        <input asp-for="ArchivoImagen" type="file" class="form-control" accept="image/*" id="inputArchivo" />
+                        <span asp-validation-for="ArchivoImagen" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mb-4 text-center p-3 bg-light rounded-3 border @(string.IsNullOrWhiteSpace(Model.ImagenUrl) ? "d-none" : "")" id="previewContainer">
+                    <small class="text-muted d-block mb-2">Vista previa de imagen:</small>
+                    <img src="@Model.ImagenUrl" alt="Vista previa" style="max-height: 180px; max-width: 100%; object-fit: cover;" class="rounded shadow-sm" id="imgPreview" />
+                </div>
+
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    <a asp-controller="Menu" asp-action="Index" class="btn btn-secondary px-4 rounded-pill">
+                        Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-pizza px-4 rounded-pill">
+                        @(Model.EsEdicion ? "Guardar cambios" : "Crear pizza")
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.getElementById('inputArchivo').addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (ev) {
+                    const img = document.getElementById('imgPreview');
+                    const container = document.getElementById('previewContainer');
+                    img.src = ev.target.result;
+                    container.classList.remove('d-none');
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}

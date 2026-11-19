@@ -51,8 +51,6 @@ public class SeguimientoController : Controller
             _ => 1
         };
 
-        bool esEntregado = pedido.Estado == "Entregado";
-
         var modelo = new SeguimientoViewModel
         {
             IdPedido = id,
@@ -63,8 +61,8 @@ public class SeguimientoController : Controller
                 {
                     Nombre = e.Nombre,
                     Emoji = e.Emoji,
-                    Completo = esEntregado ? i + 1 <= pasoActual : i + 1 < pasoActual,
-                    Activo = !esEntregado && i + 1 == pasoActual
+                    Completo = i + 1 <= pasoActual,
+                    Activo = i + 1 == pasoActual
                 })
                 .ToList(),
             Items = pedido.Pizzas.Select(i => new PedidoHistorialItem
